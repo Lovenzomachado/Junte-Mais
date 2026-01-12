@@ -1,0 +1,117 @@
+/* Base Styles */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Hiding */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Grain Overlay (Simulated with SVG base64 noise or CSS gradient noise) */
+.grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Animations */
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spin-linear {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+    animation: spin-linear 10s linear infinite;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-content {
+    animation: marquee 20s linear infinite;
+}
+
+/* Text Stroke */
+.text-stroke {
+    -webkit-text-stroke: 1px #F2F2F2;
+}
+
+/* Reveal Animations Classes */
+.reveal-left {
+    transform: translateX(-100px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+.reveal-left.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.reveal-right {
+    transform: translateX(100px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+.reveal-right.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.reveal-scale {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 1s ease-out 0.2s;
+}
+.reveal-scale.visible {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Scroll Reveal General */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay Utilities */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+
+/* Methodology underline expansion */
+.animate-expand {
+    width: 0%;
+    transition: width 0.8s ease-out;
+}
+.animate-expand.visible {
+    width: 100%;
+}
+
+/* Cursor Area */
+.cursor-none-area {
+    cursor: none;
+}
+@media (max-width: 768px) {
+    .cursor-none-area {
+        cursor: auto;
+    }
+    #custom-cursor {
+        display: none !important;
+    }
+}
