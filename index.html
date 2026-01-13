@@ -123,6 +123,20 @@
         .animate-expand.visible {
             width: 100%;
         }
+        /* Mobile Menu Animation */
+        .mobile-menu-link {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease-out;
+        }
+        #mobile-menu.active .mobile-menu-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #mobile-menu.active .mobile-menu-link:nth-child(1) { transition-delay: 0.1s; }
+        #mobile-menu.active .mobile-menu-link:nth-child(2) { transition-delay: 0.2s; }
+        #mobile-menu.active .mobile-menu-link:nth-child(3) { transition-delay: 0.3s; }
+        #mobile-menu.active .mobile-menu-link:nth-child(4) { transition-delay: 0.4s; }
         /* Cursor Area */
         .cursor-none-area {
             cursor: none;
@@ -149,10 +163,31 @@
             <a href="#contact" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
         </nav>
 
-        <button class="md:hidden text-[#F2F2F2]">
+        <button class="md:hidden text-[#F2F2F2] z-50 relative" id="mobile-menu-button">
             <i data-lucide="menu" class="w-8 h-8"></i>
         </button>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500" id="mobile-menu">
+        <nav class="flex flex-col gap-6 text-center">
+            <a href="#problem" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">O Problema</a>
+            <a href="#methodology" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Metodologia</a>
+            <a href="#authority-section" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">O que fazemos</a>
+            <a href="#contact" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
+        </nav>
+        <div class="flex gap-6 mt-8">
+            <a href="#" class="text-[#F2F2F2] hover:text-[#E0C3FC] transition-colors">
+                <i data-lucide="instagram" class="w-6 h-6"></i>
+            </a>
+            <a href="#" class="text-[#F2F2F2] hover:text-[#E0C3FC] transition-colors">
+                <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </a>
+        </div>
+        <div class="absolute bottom-8 animate-spin-slow opacity-20">
+            <i data-lucide="asterisk" class="w-24 h-24 text-[#CCFF00]"></i>
+        </div>
+    </div>
 
     <div class="grain-overlay fixed inset-0 pointer-events-none z-50 opacity-30 mix-blend-overlay"></div>
 
@@ -459,7 +494,7 @@
                 });
             }
 
-            // --- SOCIAL PROOF SUN RISING (ANTECIPADO) ---
+            // --- SOCIAL PROOF SUN RISING ---
             const sun = document.getElementById('rising-sun');
             const socialSection = document.getElementById('social-proof');
             if (sun && socialSection) {
@@ -488,6 +523,41 @@
                     header.classList.remove('backdrop-blur-md', 'bg-black/50', 'py-4');
                     header.classList.add('py-6', 'mix-blend-difference');
                 }
+            });
+
+            // --- MOBILE MENU ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            let menuOpen = false;
+
+            const toggleMenu = () => {
+                menuOpen = !menuOpen;
+                if (menuOpen) {
+                    mobileMenu.classList.add('active');
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.pointerEvents = 'auto';
+                    document.body.style.overflow = 'hidden';
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.setAttribute('data-lucide', 'x');
+                    lucide.createIcons();
+                } else {
+                    mobileMenu.classList.remove('active');
+                    mobileMenu.style.opacity = '0';
+                    mobileMenu.style.pointerEvents = 'none';
+                    document.body.style.overflow = '';
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                }
+            };
+
+            mobileMenuButton.addEventListener('click', toggleMenu);
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu();
+                });
             });
         });
     </script>
