@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junta | Estratégia & Criatividade</title>
+    <title>Junte Mais | Estratégia & Criatividade</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter+Tight:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (CDN for standalone usage) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,23 +26,121 @@
             }
         }
     </script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
+        /* Base Styles */
         html {
             scroll-behavior: smooth;
         }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Scrollbar Hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Grain Overlay */
+        .grain-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+        }
+        /* Animations */
+        @keyframes spin-linear {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-linear 10s linear infinite;
+        }
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-content {
+            animation: marquee 20s linear infinite;
+        }
+        /* Text Stroke */
+        .text-stroke {
+            -webkit-text-stroke: 1px #F2F2F2;
+        }
+        /* Reveal Animations Classes */
+        .reveal-left {
+            transform: translateX(-100px);
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+        .reveal-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .reveal-right {
+            transform: translateX(100px);
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+        .reveal-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .reveal-scale {
+            transform: scale(0);
+            opacity: 0;
+            transition: all 1s ease-out 0.2s;
+        }
+        .reveal-scale.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        /* Hero Text Hover Effect */
+        .hero-text {
+            transition: color 0.3s ease;
+        }
+        /* Scroll Reveal General */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Delay Utilities */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        /* Methodology underline expansion */
+        .animate-expand {
+            width: 0%;
+            transition: width 0.8s ease-out;
+        }
+        .animate-expand.visible {
+            width: 100%;
+        }
+        /* Cursor Area */
+        .cursor-none-area {
+            cursor: none;
+        }
+        @media (max-width: 768px) {
+            .cursor-none-area {
+                cursor: auto;
+            }
+            #custom-cursor {
+                display: none !important;
+            }
+        }
     </style>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="font-sans bg-[#050505] min-h-screen text-[#F2F2F2] selection:bg-[#CCFF00] selection:text-black overflow-x-hidden">
 
-    <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center transition-all duration-300 mix-blend-difference" id="main-header">
-        <a href="#hero" class="text-2xl font-bold tracking-tighter uppercase text-[#F2F2F2]">Junta</a>
+        <a href="#hero" class="text-2xl font-bold tracking-tighter uppercase text-[#F2F2F2]">Junte Mais</a>
         
         <nav class="hidden md:flex gap-8">
             <a href="#problem" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">O Problema</a>
@@ -53,21 +149,17 @@
             <a href="#contact" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
         </nav>
 
-        <!-- Mobile Menu Button (Simple implementation) -->
         <button class="md:hidden text-[#F2F2F2]">
             <i data-lucide="menu" class="w-8 h-8"></i>
         </button>
     </header>
 
-    <!-- Grain Overlay -->
     <div class="grain-overlay fixed inset-0 pointer-events-none z-50 opacity-30 mix-blend-overlay"></div>
 
     <main class="relative z-10">
         
-        <!-- Hero Section -->
         <section class="h-screen relative flex flex-col items-center justify-center py-20 overflow-hidden transition-colors duration-500 ease-in-out" id="hero">
             
-            <!-- Hero Background Images (Hidden by default) -->
             <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0" id="hero-bg-strategy">
                 <img src="https://images.unsplash.com/photo-1761599821310-da0d6356b4f3?q=80&w=1080&auto=format&fit=crop" alt="Strategy Background" class="w-full h-full object-cover grayscale">
             </div>
@@ -76,22 +168,20 @@
             </div>
 
             <div class="flex flex-col w-full max-w-6xl gap-8 md:gap-4 relative z-10">
-                
-                <!-- Strategy Word -->
                 <div class="self-center md:self-start relative z-10 hero-text-container" data-side="strategy">
                     <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase transition-colors duration-300 cursor-pointer text-[#F2F2F2] reveal-left hero-text text-center md:text-left">
                         Estratégia
                     </h1>
                 </div>
 
-                <!-- Asterisk -->
-                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none md:pointer-events-auto reveal-scale">
-                    <div class="text-[#F2F2F2] animate-spin-slow opacity-50 md:opacity-100 hero-text-target">
-                        <i data-lucide="asterisk" class="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40"></i>
+                <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none md:pointer-events-auto">
+                    <div class="reveal-scale">
+                        <div class="text-[#F2F2F2] animate-spin-slow opacity-50 md:opacity-100 hero-text-target transition-colors duration-300">
+                            <i data-lucide="asterisk" class="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40"></i>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Creativity Word -->
                 <div class="self-center md:self-end relative z-10 hero-text-container" data-side="creativity">
                     <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase transition-colors duration-300 cursor-pointer md:text-right text-[#F2F2F2] reveal-right hero-text text-center">
                         Criatividade
@@ -99,35 +189,31 @@
                 </div>
             </div>
 
-            <!-- CTA Button -->
-            <div class="mt-16 md:mt-24 z-10 reveal-scale delay-200 w-full flex justify-center">
-                <button class="group relative px-8 py-4 rounded-full border-2 border-[#F2F2F2] overflow-hidden transition-all duration-300 hover:border-[#CCFF00]">
+            <div class="mt-16 md:mt-24 z-10 reveal-scale delay-200 w-full flex items-center justify-center px-4">
+                <a href="#contact" class="group relative px-6 md:px-8 py-3 md:py-4 rounded-full border-2 border-[#F2F2F2] overflow-hidden transition-all duration-300 hover:border-[#CCFF00] flex items-center gap-2">
                     <div class="absolute inset-0 w-full h-full bg-[#CCFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    <span class="relative flex items-center gap-2 font-bold text-lg text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300">
-                        Vamos construir autoridade <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    <span class="relative font-bold text-base md:text-lg text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300 whitespace-nowrap">
+                        Vamos construir autoridade
                     </span>
-                </button>
+                    <i data-lucide="arrow-right" class="relative w-5 h-5 text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300"></i>
+                </a>
             </div>
         </section>
 
-        <!-- Marquee -->
         <div class="bg-[#E0C3FC] py-4 overflow-hidden border-y border-black">
             <div class="marquee-content flex whitespace-nowrap text-2xl md:text-4xl font-bold uppercase tracking-wider text-[#050505]">
-                <span class="mr-12">Estratégia • Conexões • Sucesso • Junta+</span>
-                <span class="mr-12">Estratégia • Conexões • Sucesso • Junta+</span>
-                <span class="mr-12">Estratégia • Conexões • Sucesso • Junta+</span>
-                <span class="mr-12">Estratégia • Conexões • Sucesso • Junta+</span>
-                <span class="mr-12">Estratégia • Conexões • Sucesso • Junta+</span>
-                <span class="mr-12">Estratégia • Conexões • Sucesso • Junta+</span>
+                <span class="mr-12">Estratégia • Conexões • Sucesso • Junte Mais+</span>
+                <span class="mr-12">Estratégia • Conexões • Sucesso • Junte Mais+</span>
+                <span class="mr-12">Estratégia • Conexões • Sucesso • Junte Mais+</span>
+                <span class="mr-12">Estratégia • Conexões • Sucesso • Junte Mais+</span>
+                <span class="mr-12">Estratégia • Conexões • Sucesso • Junte Mais+</span>
+                <span class="mr-12">Estratégia • Conexões • Sucesso • Junte Mais+</span>
             </div>
         </div>
 
-        <!-- Problem Section -->
         <section class="bg-[#050505] text-[#F2F2F2] py-24 md:py-32 overflow-hidden" id="problem">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24">
-                    
-                    <!-- Text Content -->
                     <div class="w-full md:w-1/2 flex flex-col justify-center scroll-reveal">
                         <h2 class="text-sm md:text-base text-[#CCFF00] font-bold uppercase tracking-widest mb-4 border border-[#CCFF00] inline-block px-3 py-1 rounded-full w-max">
                             O Problema (Anti-Trend)
@@ -138,7 +224,6 @@
                         <p class="text-xl md:text-2xl text-gray-400 mb-12 leading-relaxed">
                             Todo mundo fazendo o mesmo reels. A mesma música. A mesma dancinha. A gente decidiu mudar isso. Sua marca merece mais que apenas seguir o fluxo.
                         </p>
-        
                         <div class="relative inline-block w-max">
                             <svg width="60" height="60" viewBox="0 0 100 100" class="absolute -top-8 -right-8 text-[#F2F2F2] rotate-12">
                                 <path d="M10,80 Q50,20 80,50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -149,26 +234,16 @@
                             </p>
                         </div>
                     </div>
-        
-                    <!-- Image Content -->
                     <div class="w-full md:w-1/2 relative scroll-reveal delay-200">
                         <div class="relative z-10 rounded-2xl overflow-hidden border border-[#333]">
-                            <!-- Unsplash placeholder for Cinema Chairs -->
                             <img src="https://images.unsplash.com/photo-1595769816263-9b910be24d5f?q=80&w=2070&auto=format&fit=crop" alt="Cinema Chairs" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
                         </div>
-        
-                        <!-- Decorative Elements -->
-                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-[#CCFF00] rounded-full blur-[40px] opacity-20"></div>
-                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-[#E0C3FC] rounded-full blur-[50px] opacity-20"></div>
                     </div>
-        
                 </div>
             </div>
         </section>
 
-        <!-- Methodology Section -->
         <section class="bg-[#F2F2F2] text-[#050505] relative overflow-hidden py-24" id="methodology">
             <div class="container mx-auto px-4 relative z-10">
                 <div class="mb-24 scroll-reveal">
@@ -181,9 +256,7 @@
                         de verdade.
                     </h2>
                 </div>
-        
                 <div class="flex flex-col md:flex-row gap-12">
-                    <!-- Sticky Green Box -->
                     <div class="md:w-1/3">
                         <div class="sticky top-24 p-8 bg-[#CCFF00] rounded-[2rem] border-2 border-black rotate-2 hover:rotate-0 transition-transform duration-300">
                             <h3 class="text-2xl font-bold mb-4 uppercase">Como trabalhamos</h3>
@@ -195,21 +268,18 @@
                             </ul>
                         </div>
                     </div>
-        
-                    <!-- Sliding Photos Container -->
                     <div class="md:w-2/3 overflow-hidden" id="methodology-slider-container">
                         <div class="flex gap-8 w-[150%] transition-transform duration-100 ease-out" id="methodology-slider">
+                            <div class="w-full aspect-[4/3] bg-black text-[#F2F2F2] p-8 rounded-2xl flex items-center justify-center">
+                                <p class="text-3xl md:text-4xl font-bold text-center">"Não somos agência.<br/>Somos extensão."</p>
+                            </div>
                             <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                                 <img src="https://images.unsplash.com/photo-1622676614630-a9109126264a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Team" class="w-full h-full object-cover">
                             </div>
-                            <div class="w-full aspect-[4/3] bg-black text-[#F2F2F2] p-8 rounded-2xl flex items-center justify-center">
-                                <p class="text-4xl font-bold text-center">"Não somos agência.<br/>Somos extensão."</p>
-                            </div>
                         </div>
-                        
                         <div class="mt-12 max-w-xl text-xl leading-relaxed scroll-reveal">
                             <p>
-                                Acreditamos que as melhores ideias nascem da troca. Não entregamos apenas um PDF bonito; construímos sistemas visuais e estratégias que respiram a cultura da sua empresa. O processo é a quatro mãos, do briefing ao lançamento.
+                                Acreditamos que as melhores ideias nascem da troca. Não entregamos apenas um PDF bonito; construímos sistemas visuais e estratégias que respiram a cultura da sua empresa.
                             </p>
                         </div>
                     </div>
@@ -217,143 +287,209 @@
             </div>
         </section>
 
-        <!-- Authority Section -->
         <section class="bg-[#050505] text-[#F2F2F2] py-32 relative cursor-none-area" id="authority-section">
-            
-            <!-- Custom Cursor Element -->
             <div id="custom-cursor" class="pointer-events-none fixed top-0 left-0 z-50 bg-[#050505] text-[#F2F2F2] border border-[#F2F2F2] px-4 py-2 rounded-xl rounded-bl-none whitespace-nowrap text-sm font-bold uppercase tracking-wider hidden transform transition-transform duration-75">
                 <span id="cursor-text"></span>
             </div>
 
             <div class="container mx-auto px-4">
                 <h2 class="text-5xl md:text-7xl font-bold mb-16 text-center scroll-reveal">O que fazemos</h2>
-
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px]">
-                    
-                    <!-- Box 1: Branding -->
                     <div class="group relative bg-[#E0C3FC] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger" data-cursor="Identidade Real">
                         <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
                         </div>
                         <h3 class="text-4xl font-bold">Branding</h3>
-                        <p class="text-xl font-medium max-w-xs">
-                            Criamos marcas que não precisam gritar para serem ouvidas.
-                        </p>
-                        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-[#CCFF00] rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                        <p class="text-xl font-medium max-w-xs">Marcas que não precisam gritar para serem ouvidas.</p>
                     </div>
 
-                    <!-- Box 2: Social Media -->
                     <div class="group relative border border-[#333] rounded-3xl p-8 flex flex-col justify-between hover:border-[#F2F2F2] transition-colors duration-300 bg-[#0a0a0a] cursor-trigger" data-cursor="Sem preencher feed">
                         <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
                             <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
                         </div>
-                        <h3 class="text-4xl font-bold text-transparent text-stroke hover:text-[#CCFF00] transition-colors duration-300">
-                            Social Media
-                        </h3>
-                        <p class="text-xl text-[#888] group-hover:text-[#F2F2F2] transition-colors">
-                            Estratégia de conteúdo que gera conversa, não apenas likes.
-                        </p>
+                        <h3 class="text-4xl font-bold text-transparent text-stroke hover:text-[#CCFF00] transition-colors duration-300">Social Media</h3>
+                        <p class="text-xl text-[#888] group-hover:text-[#F2F2F2] transition-colors">Estratégia que gera conversa, não likes.</p>
                     </div>
 
-                    <!-- Box 3: Consultoria -->
-                    <div class="group relative rounded-3xl overflow-hidden cursor-trigger min-h-[400px] md:min-h-0" data-cursor="Direção Estratégica">
+                    <div class="group relative rounded-3xl overflow-hidden cursor-trigger flex flex-col justify-between p-8" data-cursor="Direção Estratégica">
                         <img src="https://images.unsplash.com/photo-1634326080825-985cfc816db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Consulting" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
-                        <div class="absolute inset-0 p-8 flex flex-col justify-between z-10">
-                            <div class="self-end opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                                <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
-                            </div>
-                            <div class="text-white">
-                                <h3 class="text-4xl font-bold mb-2">Consultoria</h3>
-                                <p class="text-lg text-[#ddd]">
-                                    Mentoria para times in-house e diretores criativos.
-                                </p>
-                            </div>
+                        <div class="relative z-10 self-end opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
+                        </div>
+                        <div class="relative z-10 text-white">
+                            <h3 class="text-4xl font-bold mb-2">Consultoria</h3>
+                            <p class="text-lg text-[#ddd]">Mentoria para times in-house e diretores criativos.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- Social Proof Section -->
         <section class="relative min-h-screen bg-[#111] overflow-hidden flex flex-col justify-center items-center" id="social-proof">
-            
-            <!-- Sun Rising Effect -->
             <div id="rising-sun" class="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 transition-transform duration-100 ease-out translate-y-full opacity-0">
                 <div class="w-[40vw] h-[40vw] bg-[#E0C3FC] rounded-full blur-[20px] md:blur-[60px]"></div>
             </div>
-
-            <!-- Mountain Foreground -->
             <div class="absolute bottom-0 left-0 right-0 h-[40vh] md:h-[60vh] z-10 pointer-events-none text-[#050505]">
                 <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 600">
                     <path d="M0,600 L0,200 C200,300 400,100 720,250 C1000,400 1200,150 1440,300 L1440,600 Z" fill="currentColor" />
                 </svg>
             </div>
-
             <div class="relative z-20 container mx-auto px-4 text-center mt-[-10vh]">
                 <h2 class="text-6xl md:text-8xl font-bold text-[#F2F2F2] mb-12 scroll-reveal">
-                    Marca forte <br />
-                    <span class="italic font-serif text-[#E0C3FC]">pensa junto</span>.
+                    Marca forte <br /><span class="italic font-serif text-[#E0C3FC]">pensa junto</span>.
                 </h2>
-
-                <!-- Logos -->
-                <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale mb-24 scroll-reveal delay-100">
-                    <span class="text-2xl md:text-3xl font-bold text-white">Spotify</span>
-                    <span class="text-2xl md:text-3xl font-bold text-white">Netflix</span>
-                    <span class="text-2xl md:text-3xl font-bold text-white">Nike</span>
-                    <span class="text-2xl md:text-3xl font-bold text-white">Vogue</span>
-                </div>
-
-                <!-- Floating Testimonial -->
-                <div class="bg-[#1a1a1a] p-6 rounded-2xl max-w-md mx-auto border border-[#333] text-left scroll-reveal delay-200 transform translate-y-12">
-                    <p class="text-[#ccc] text-lg mb-4">"A Junta mudou nossa percepção de valor. Não foi só design, foi posicionamento de mercado."</p>
+                <div class="bg-[#1a1a1a] p-6 rounded-2xl max-w-md mx-auto border border-[#333] text-left scroll-reveal delay-200">
+                    <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                        <div>
-                            <p class="text-white font-bold text-sm">Ana Silva</p>
-                            <p class="text-gray-400 text-xs">CMO @ TechStart</p>
-                        </div>
+                        <div><p class="text-white font-bold text-sm">Ana Silva</p><p class="text-gray-400 text-xs">CMO @ TechStart</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer class="bg-[#CCFF00] text-[#050505] min-h-screen flex flex-col justify-between p-8 md:p-12 relative overflow-hidden" id="contact">
-            
             <div class="flex-grow flex flex-col justify-center items-center text-center">
-                <h2 class="text-[20vw] leading-none font-bold tracking-tighter mb-8 scroll-reveal">JUNTA?</h2>
-                <p class="text-xl md:text-3xl font-medium max-w-2xl mb-12 scroll-reveal delay-100">
-                    Cada marca é um projeto vivo. <br/> Vamos dar vida à sua?
-                </p>
-
-                <form class="w-full max-w-xl flex flex-col gap-8 scroll-reveal delay-200">
-                    <div class="relative">
-                        <input type="email" placeholder="Seu email corporativo" class="w-full bg-transparent border-b-2 border-[#050505] py-4 text-2xl placeholder:text-[#050505]/50 focus:outline-none focus:border-[#050505]">
-                    </div>
-                    <button class="self-end flex items-center gap-2 text-2xl font-bold hover:gap-4 transition-all">
-                        ENVIAR <i data-lucide="arrow-right"></i>
-                    </button>
+                <h2 class="text-[15vw] leading-none font-bold tracking-tighter mb-8 scroll-reveal uppercase">Junte Mais!</h2>
+                <p class="text-xl md:text-3xl font-medium max-w-2xl mb-12 scroll-reveal delay-100">Cada marca é um projeto vivo. Vamos dar vida à sua?</p>
+                <form class="w-full max-w-xl flex flex-col gap-8 scroll-reveal">
+                    <input type="email" placeholder="Seu email corporativo" class="w-full bg-transparent border-b-2 border-[#050505] py-4 text-2xl focus:outline-none focus:border-[#050505]">
+                    <button class="self-end flex items-center gap-2 text-2xl font-bold hover:gap-4 transition-all">ENVIAR <i data-lucide="arrow-right"></i></button>
                 </form>
             </div>
-
             <div class="flex justify-between items-end border-t border-[#050505]/20 pt-8 mt-12">
                 <div class="flex flex-col gap-2 font-medium">
-                    <a href="#" class="hover:underline">Instagram</a>
-                    <a href="#" class="hover:underline">LinkedIn</a>
-                    <a href="#" class="hover:underline">Behance</a>
+                    <a href="#" class="hover:underline">Instagram</a><a href="#" class="hover:underline">LinkedIn</a>
                 </div>
-
-                <div class="animate-spin-slow">
-                    <i data-lucide="asterisk" class="w-16 h-16"></i>
-                </div>
+                <div class="animate-spin-slow"><i data-lucide="asterisk" class="w-16 h-16"></i></div>
             </div>
         </footer>
-
     </main>
 
-    <!-- JS Scripts -->
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            setTimeout(() => {
+                document.querySelector('.reveal-left')?.classList.add('visible');
+                document.querySelector('.reveal-right')?.classList.add('visible');
+                document.querySelectorAll('.reveal-scale').forEach(el => el.classList.add('visible'));
+            }, 100);
+
+            // --- HERO SECTION INTERACTIVITY ---
+            const heroSection = document.getElementById('hero');
+            const strategyContainer = document.querySelector('[data-side="strategy"]');
+            const creativityContainer = document.querySelector('[data-side="creativity"]');
+            const strategyText = strategyContainer.querySelector('.hero-text');
+            const creativityText = creativityContainer.querySelector('.hero-text');
+            const heroTargets = document.querySelectorAll('.hero-text-target'); 
+
+            const bgStrategy = document.getElementById('hero-bg-strategy');
+            const bgCreativity = document.getElementById('hero-bg-creativity');
+
+            const resetHero = () => {
+                heroSection.style.backgroundColor = ''; 
+                strategyText.style.color = '#F2F2F2';
+                creativityText.style.color = '#F2F2F2';
+                heroTargets.forEach(target => target.style.color = '#F2F2F2');
+                if(bgStrategy) bgStrategy.style.opacity = '0';
+                if(bgCreativity) bgCreativity.style.opacity = '0';
+            };
+
+            strategyContainer.addEventListener('mouseenter', () => {
+                heroSection.style.backgroundColor = '#CCFF00';
+                strategyText.style.color = '#F2F2F2';
+                creativityText.style.color = '#050505';
+                heroTargets.forEach(target => target.style.color = '#050505');
+                if(bgStrategy) bgStrategy.style.opacity = '0.15';
+            });
+            strategyContainer.addEventListener('mouseleave', resetHero);
+
+            creativityContainer.addEventListener('mouseenter', () => {
+                heroSection.style.backgroundColor = '#E0C3FC';
+                creativityText.style.color = '#F2F2F2';
+                strategyText.style.color = '#050505';
+                heroTargets.forEach(target => target.style.color = '#050505');
+                if(bgCreativity) bgCreativity.style.opacity = '0.2';
+            });
+            creativityContainer.addEventListener('mouseleave', resetHero);
+
+            // --- SCROLL OBSERVER ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const expand = entry.target.querySelector('.animate-expand');
+                        if (expand) expand.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.scroll-reveal, .animate-expand').forEach(el => observer.observe(el));
+
+            // --- METHODOLOGY SLIDER ---
+            const methodologySection = document.getElementById('methodology');
+            const slider = document.getElementById('methodology-slider');
+            if (methodologySection && slider) {
+                window.addEventListener('scroll', () => {
+                    const rect = methodologySection.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                        slider.style.transform = `translateX(${Math.min(Math.max(progress * -20, -20), 0)}%)`;
+                    }
+                });
+            }
+
+            // --- CUSTOM CURSOR ---
+            const cursor = document.getElementById('custom-cursor');
+            const cursorText = document.getElementById('cursor-text');
+            if (cursor && window.innerWidth >= 768) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.transform = `translate(${e.clientX + 10}px, ${e.clientY + 10}px)`;
+                });
+                document.getElementById('authority-section').addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+                document.getElementById('authority-section').addEventListener('mouseleave', () => cursor.classList.add('hidden'));
+                document.querySelectorAll('.cursor-trigger').forEach(trigger => {
+                    trigger.addEventListener('mouseenter', () => {
+                        cursorText.innerText = trigger.getAttribute('data-cursor');
+                        cursor.style.opacity = '1';
+                    });
+                    trigger.addEventListener('mouseleave', () => cursorText.innerText = '');
+                });
+            }
+
+            // --- SOCIAL PROOF SUN RISING (ANTECIPADO) ---
+            const sun = document.getElementById('rising-sun');
+            const socialSection = document.getElementById('social-proof');
+            if (sun && socialSection) {
+                window.addEventListener('scroll', () => {
+                    const rect = socialSection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    const isMobile = window.innerWidth < 768;
+                    const activationMargin = isMobile ? 800 : 200;
+
+                    if (rect.top < windowHeight + activationMargin && rect.bottom > -200) {
+                        const offset = isMobile ? windowHeight * 0.8 : 0;
+                        let progress = Math.min(Math.max((windowHeight + offset - rect.top) / (rect.height + windowHeight), 0), 1);
+                        sun.style.transform = `translate(-50%, ${100 - (progress * (isMobile ? 250 : 120))}%)`;
+                        sun.style.opacity = Math.min(progress * (isMobile ? 4 : 3), 1);
+                    }
+                });
+            }
+
+            // --- HEADER BLUR ---
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('backdrop-blur-md', 'bg-black/50', 'py-4');
+                    header.classList.remove('py-6', 'mix-blend-difference');
+                } else {
+                    header.classList.remove('backdrop-blur-md', 'bg-black/50', 'py-4');
+                    header.classList.add('py-6', 'mix-blend-difference');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
