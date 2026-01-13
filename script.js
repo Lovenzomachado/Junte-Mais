@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgStrategy = document.getElementById('hero-bg-strategy');
     const bgCreativity = document.getElementById('hero-bg-creativity');
 
+    const isMobile = window.innerWidth < 768;
+
     const resetHero = () => {
+        if (isMobile) return; // No mobile, mantém as imagens sempre visíveis
+        
         heroSection.style.backgroundColor = ''; 
         heroTexts.forEach(text => text.style.color = '');
         heroTargets.forEach(target => target.style.color = '');
@@ -29,24 +33,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if(bgCreativity) bgCreativity.style.opacity = '0';
     };
 
-    if (strategyContainer) {
-        strategyContainer.addEventListener('mouseenter', () => {
-            heroSection.style.backgroundColor = '#CCFF00';
-            heroTexts.forEach(text => text.style.color = '#050505');
-            heroTargets.forEach(target => target.style.color = '#050505');
-            if(bgStrategy) bgStrategy.style.opacity = '0.15';
-        });
-        strategyContainer.addEventListener('mouseleave', resetHero);
+    // Mobile: mostra ambas as imagens de fundo sempre
+    if (isMobile) {
+        if(bgStrategy) bgStrategy.style.opacity = '0.3';
+        if(bgCreativity) bgCreativity.style.opacity = '0.3';
     }
 
-    if (creativityContainer) {
-        creativityContainer.addEventListener('mouseenter', () => {
-            heroSection.style.backgroundColor = '#E0C3FC';
-            heroTexts.forEach(text => text.style.color = '#050505');
-            heroTargets.forEach(target => target.style.color = '#050505');
-            if(bgCreativity) bgCreativity.style.opacity = '0.2';
-        });
-        creativityContainer.addEventListener('mouseleave', resetHero);
+    // Desktop: comportamento de hover
+    if (!isMobile) {
+        if (strategyContainer) {
+            strategyContainer.addEventListener('mouseenter', () => {
+                heroSection.style.backgroundColor = '#CCFF00';
+                heroTexts.forEach(text => text.style.color = '#050505');
+                heroTargets.forEach(target => target.style.color = '#050505');
+                if(bgStrategy) bgStrategy.style.opacity = '0.15';
+            });
+            strategyContainer.addEventListener('mouseleave', resetHero);
+        }
+
+        if (creativityContainer) {
+            creativityContainer.addEventListener('mouseenter', () => {
+                heroSection.style.backgroundColor = '#E0C3FC';
+                heroTexts.forEach(text => text.style.color = '#050505');
+                heroTargets.forEach(target => target.style.color = '#050505');
+                if(bgCreativity) bgCreativity.style.opacity = '0.2';
+            });
+            creativityContainer.addEventListener('mouseleave', resetHero);
+        }
     }
 
 
