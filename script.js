@@ -128,42 +128,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- SOCIAL PROOF SUN RISING ---
-    const sun = document.getElementById('rising-sun');
-    const socialSection = document.getElementById('social-proof');
+// --- SOCIAL PROOF SUN RISING (VERSÃO ANTECIPADA) ---
+const sun = document.getElementById('rising-sun');
+const socialSection = document.getElementById('social-proof');
 
-    if (sun && socialSection) {
-        window.addEventListener('scroll', () => {
-            const rect = socialSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
+if (sun && socialSection) {
+    window.addEventListener('scroll', () => {
+        const rect = socialSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const isMobile = window.innerWidth < 768;
 
-            // Improved calculation for mobile
-            // Use a larger range of interaction to ensure it triggers on smaller screens
-            if (rect.top < windowHeight && rect.bottom > -200) {
-                // Calculate progress based on how much of the section has been scrolled
-                // On mobile, the section is taller, so we want the sun to rise as we scroll through it
-                
-                // 0 when section enters bottom, 1 when section leaves top
-                let progress = (windowHeight - rect.top) / (rect.height + windowHeight);
-                
-                // Adjust curve
-                progress = Math.min(Math.max(progress, 0), 1);
-                
-                // Map to Y translation 
-                // Start: 100% (hidden below)
-                // End: -30% (fully risen)
-                // We want it to rise earlier on mobile
-                const isMobile = window.innerWidth < 768;
-                const multiplier = isMobile ? 180 : 120; // Rise faster/higher on mobile
-                const yPos = 100 - (progress * multiplier);
-                
-                const opacity = Math.min(progress * 3, 1); 
+        // Aumentamos a margem de ativação para 800px antes da seção aparecer no mobile
+        const activationMargin = isMobile ? 800 : 200;
 
-                sun.style.transform = `translate(-50%, ${yPos}%)`;
-                sun.style.opacity = opacity;
-            }
-        });
-    }
+        if (rect.top < windowHeight + activationMargin && rect.bottom > -200) {
+            
+            // No mobile, o offset é muito maior (0.8), fazendo o sol "nascer" 
+            // bem antes da seção chegar ao centro da tela.
+            const offset = isMobile ? windowHeight * 0.8 : 0;
+            
+            let progress = (windowHeight + offset - rect.top) / (rect.height + windowHeight);
+            
+            // Limitamos o progresso entre 0 e 1
+            progress = Math.min(Math.max(progress, 0), 1);
+            
+            // O multiplicador define a altura final. 250 faz ele subir mais no mobile.
+            const multiplier = isMobile ? 250 : 120;
+            const yPos = 100 - (progress * multiplier);
+            
+            // Opacidade mais agressiva no início para mobile
+            const opacity = Math.min(progress * (isMobile ? 4 : 3), 1); 
+
+            sun.style.transform = `translate(-50%, ${yPos}%)`;
+            sun.style.opacity = opacity;
+        }
+    });
+}
 
     // --- HEADER BLUR ON SCROLL ---
     const header = document.getElementById('main-header');
