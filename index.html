@@ -195,12 +195,14 @@
         
         <section class="h-screen relative flex flex-col items-center justify-center py-20 overflow-hidden transition-colors duration-500 ease-in-out" id="hero">
             
-            <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0" id="hero-bg-strategy">
-                <img src="https://images.unsplash.com/photo-1761599821310-da0d6356b4f3?q=80&w=1080&auto=format&fit=crop" alt="Strategy Background" class="w-full h-full object-cover grayscale">
-            </div>
-            <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0" id="hero-bg-creativity">
-                <img src="https://images.unsplash.com/photo-1761977317692-4561ab4845e4?q=80&w=1080&auto=format&fit=crop" alt="Creativity Background" class="w-full h-full object-cover">
-            </div>
+            <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0 md:opacity-0" id="hero-bg-strategy">
+    <img src="https://images.unsplash.com/photo-1761599821310-da0d6356b4f3?q=80&w=1080&auto=format&fit=crop" alt="Strategy Background" class="w-full h-full object-cover grayscale blur-[2px] md:blur-none">
+    <div class="absolute inset-0 bg-black/75 md:bg-transparent grain-overlay"></div>
+</div>
+<div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0 md:opacity-0" id="hero-bg-creativity">
+    <img src="https://images.unsplash.com/photo-1761977317692-4561ab4845e4?q=80&w=1080&auto=format&fit=crop" alt="Creativity Background" class="w-full h-full object-cover blur-[2px] md:blur-none">
+    <div class="absolute inset-0 bg-black/75 md:bg-transparent grain-overlay"></div>
+</div>
 
             <div class="flex flex-col w-full max-w-6xl gap-8 md:gap-4 relative z-10">
                 <div class="self-center md:self-start relative z-10 hero-text-container" data-side="strategy">
