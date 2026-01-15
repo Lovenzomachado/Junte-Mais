@@ -13,55 +13,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero');
     const strategyContainer = document.querySelector('[data-side="strategy"]');
     const creativityContainer = document.querySelector('[data-side="creativity"]');
-    const heroTexts = document.querySelectorAll('.hero-text'); 
+    const strategyText = strategyContainer.querySelector('.hero-text');
+    const creativityText = creativityContainer.querySelector('.hero-text');
     const heroTargets = document.querySelectorAll('.hero-text-target'); 
-    
-    // Background Images
+
     const bgStrategy = document.getElementById('hero-bg-strategy');
     const bgCreativity = document.getElementById('hero-bg-creativity');
 
     const isMobile = window.innerWidth < 768;
 
+    // Configura estado inicial baseado no dispositivo
+    if (isMobile) {
+        // No mobile, mostra ambas as imagens sempre
+        if(bgStrategy) {
+            bgStrategy.style.opacity = '0.3';
+            bgStrategy.style.display = 'block';
+        }
+        if(bgCreativity) {
+            bgCreativity.style.opacity = '0.3';
+            bgCreativity.style.display = 'block';
+        }
+    } else {
+        // No desktop, começa com imagens escondidas
+        if(bgStrategy) bgStrategy.style.opacity = '0';
+        if(bgCreativity) bgCreativity.style.opacity = '0';
+    }
+
     const resetHero = () => {
-        if (isMobile) return; // No mobile, mantém as imagens sempre visíveis
+        if (isMobile) return; // No mobile, mantém as imagens visíveis
         
         heroSection.style.backgroundColor = ''; 
-        heroTexts.forEach(text => text.style.color = '');
-        heroTargets.forEach(target => target.style.color = '');
-        
+        strategyText.style.color = '#F2F2F2';
+        creativityText.style.color = '#F2F2F2';
+        heroTargets.forEach(target => target.style.color = '#F2F2F2');
         if(bgStrategy) bgStrategy.style.opacity = '0';
         if(bgCreativity) bgCreativity.style.opacity = '0';
     };
 
-    // Mobile: mostra ambas as imagens de fundo sempre
-    if (isMobile) {
-        if(bgStrategy) bgStrategy.style.opacity = '0.3';
-        if(bgCreativity) bgCreativity.style.opacity = '0.3';
-    }
-
     // Desktop: comportamento de hover
     if (!isMobile) {
-        if (strategyContainer) {
-            strategyContainer.addEventListener('mouseenter', () => {
-                heroSection.style.backgroundColor = '#CCFF00';
-                heroTexts.forEach(text => text.style.color = '#050505');
-                heroTargets.forEach(target => target.style.color = '#050505');
-                if(bgStrategy) bgStrategy.style.opacity = '0.15';
-            });
-            strategyContainer.addEventListener('mouseleave', resetHero);
-        }
+        strategyContainer.addEventListener('mouseenter', () => {
+            heroSection.style.backgroundColor = '#CCFF00';
+            strategyText.style.color = '#F2F2F2';
+            creativityText.style.color = '#050505';
+            heroTargets.forEach(target => target.style.color = '#050505');
+            if(bgStrategy) bgStrategy.style.opacity = '0.15';
+        });
+        strategyContainer.addEventListener('mouseleave', resetHero);
 
-        if (creativityContainer) {
-            creativityContainer.addEventListener('mouseenter', () => {
-                heroSection.style.backgroundColor = '#E0C3FC';
-                heroTexts.forEach(text => text.style.color = '#050505');
-                heroTargets.forEach(target => target.style.color = '#050505');
-                if(bgCreativity) bgCreativity.style.opacity = '0.2';
-            });
-            creativityContainer.addEventListener('mouseleave', resetHero);
-        }
+        creativityContainer.addEventListener('mouseenter', () => {
+            heroSection.style.backgroundColor = '#E0C3FC';
+            creativityText.style.color = '#F2F2F2';
+            strategyText.style.color = '#050505';
+            heroTargets.forEach(target => target.style.color = '#050505');
+            if(bgCreativity) bgCreativity.style.opacity = '0.2';
+        });
+        creativityContainer.addEventListener('mouseleave', resetHero);
     }
-
 
     // --- SCROLL OBSERVER ---
     const observerOptions = {
@@ -82,12 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     document.querySelectorAll('.animate-expand').forEach(el => observer.observe(el));
 
-
     // --- METHODOLOGY HORIZONTAL SCROLL ---
     const methodologySection = document.getElementById('methodology');
-    const sliderContainer = document.getElementById('methodology-slider-container');
     const slider = document.getElementById('methodology-slider');
-
+    
     if (methodologySection && slider) {
         window.addEventListener('scroll', () => {
             const rect = methodologySection.getBoundingClientRect();
@@ -141,42 +147,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-// --- SOCIAL PROOF SUN RISING (VERSÃO ANTECIPADA) ---
-const sun = document.getElementById('rising-sun');
-const socialSection = document.getElementById('social-proof');
+    // --- SOCIAL PROOF SUN RISING (VERSÃO ANTECIPADA) ---
+    const sun = document.getElementById('rising-sun');
+    const socialSection = document.getElementById('social-proof');
 
-if (sun && socialSection) {
-    window.addEventListener('scroll', () => {
-        const rect = socialSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const isMobile = window.innerWidth < 768;
+    if (sun && socialSection) {
+        window.addEventListener('scroll', () => {
+            const rect = socialSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const isMobileSun = window.innerWidth < 768;
 
-        // Aumentamos a margem de ativação para 800px antes da seção aparecer no mobile
-        const activationMargin = isMobile ? 800 : 200;
+            // Aumentamos a margem de ativação para 800px antes da seção aparecer no mobile
+            const activationMargin = isMobileSun ? 800 : 200;
 
-        if (rect.top < windowHeight + activationMargin && rect.bottom > -200) {
-            
-            // No mobile, o offset é muito maior (0.8), fazendo o sol "nascer" 
-            // bem antes da seção chegar ao centro da tela.
-            const offset = isMobile ? windowHeight * 0.8 : 0;
-            
-            let progress = (windowHeight + offset - rect.top) / (rect.height + windowHeight);
-            
-            // Limitamos o progresso entre 0 e 1
-            progress = Math.min(Math.max(progress, 0), 1);
-            
-            // O multiplicador define a altura final. 250 faz ele subir mais no mobile.
-            const multiplier = isMobile ? 250 : 120;
-            const yPos = 100 - (progress * multiplier);
-            
-            // Opacidade mais agressiva no início para mobile
-            const opacity = Math.min(progress * (isMobile ? 4 : 3), 1); 
+            if (rect.top < windowHeight + activationMargin && rect.bottom > -200) {
+                
+                // No mobile, o offset é muito maior (0.8), fazendo o sol "nascer" 
+                // bem antes da seção chegar ao centro da tela.
+                const offset = isMobileSun ? windowHeight * 0.8 : 0;
+                
+                let progress = (windowHeight + offset - rect.top) / (rect.height + windowHeight);
+                
+                // Limitamos o progresso entre 0 e 1
+                progress = Math.min(Math.max(progress, 0), 1);
+                
+                // O multiplicador define a altura final. 250 faz ele subir mais no mobile.
+                const multiplier = isMobileSun ? 250 : 120;
+                const yPos = 100 - (progress * multiplier);
+                
+                // Opacidade mais agressiva no início para mobile
+                const opacity = Math.min(progress * (isMobileSun ? 4 : 3), 1); 
 
-            sun.style.transform = `translate(-50%, ${yPos}%)`;
-            sun.style.opacity = opacity;
-        }
-    });
-}
+                sun.style.transform = `translate(-50%, ${yPos}%)`;
+                sun.style.opacity = opacity;
+            }
+        });
+    }
 
     // --- HEADER BLUR ON SCROLL ---
     const header = document.getElementById('main-header');
@@ -191,4 +197,39 @@ if (sun && socialSection) {
             }
         });
     }
+
+    // --- MOBILE MENU ---
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+    let menuOpen = false;
+
+    const toggleMenu = () => {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+            mobileMenu.classList.add('active');
+            mobileMenu.style.opacity = '1';
+            mobileMenu.style.pointerEvents = 'auto';
+            document.body.style.overflow = 'hidden';
+            const icon = mobileMenuButton.querySelector('i');
+            icon.setAttribute('data-lucide', 'x');
+            lucide.createIcons();
+        } else {
+            mobileMenu.classList.remove('active');
+            mobileMenu.style.opacity = '0';
+            mobileMenu.style.pointerEvents = 'none';
+            document.body.style.overflow = '';
+            const icon = mobileMenuButton.querySelector('i');
+            icon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        }
+    };
+
+    mobileMenuButton.addEventListener('click', toggleMenu);
+
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMenu();
+        });
+    });
 });
