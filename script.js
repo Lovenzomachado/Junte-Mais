@@ -23,70 +23,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 768;
 
     // Configura estado inicial baseado no dispositivo
-    if (isMobile) {
-        // No mobile, mostra imagem inicial e alterna cores
-        if(bgStrategy) {
-            bgStrategy.style.opacity = '0.5';
-            bgStrategy.style.display = 'block';
-        }
-        if(bgCreativity) {
-            bgCreativity.style.opacity = '0';
-            bgCreativity.style.display = 'block';
-        }
-
-        // Inicia com cor verde
-        heroSection.style.backgroundColor = '#CCFF00';
-
-        // Alterna entre as imagens E cores a cada 10 segundos com fade
-        let currentImage = 'strategy';
-        setInterval(() => {
-            if (currentImage === 'strategy') {
-                // Muda para criatividade (roxo)
-                heroSection.style.transition = 'background-color 1.5s ease-in-out';
-                heroSection.style.backgroundColor = '#E0C3FC';
-                
-                if(bgStrategy) {
-                    bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
-                    bgStrategy.style.opacity = '0';
-                }
-                if(bgCreativity) {
-                    bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
-                    bgCreativity.style.opacity = '0.5';
-                }
-                currentImage = 'creativity';
-            } else {
-                // Muda para estratégia (verde)
-                heroSection.style.transition = 'background-color 1.5s ease-in-out';
-                heroSection.style.backgroundColor = '#CCFF00';
-                
-                if(bgCreativity) {
-                    bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
-                    bgCreativity.style.opacity = '0';
-                }
-                if(bgStrategy) {
-                    bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
-                    bgStrategy.style.opacity = '0.5';
-                }
-                currentImage = 'strategy';
-            }
-        }, 10000);
-    } else {
-        // No desktop, começa com imagens escondidas
-        if(bgStrategy) bgStrategy.style.opacity = '0';
-        if(bgCreativity) bgCreativity.style.opacity = '0';
+if (isMobile) {
+    // No mobile, começa com a primeira imagem em opacidade baixa
+    if(bgStrategy) {
+        bgStrategy.style.opacity = '0.3';
+        bgStrategy.style.display = 'block';
+    }
+    if(bgCreativity) {
+        bgCreativity.style.opacity = '0';
+        bgCreativity.style.display = 'block';
     }
 
-    const resetHero = () => {
-        if (isMobile) return; // No mobile, mantém as imagens e cores visíveis
-        
-        heroSection.style.transition = 'background-color 0.5s ease';
-        heroSection.style.backgroundColor = '#050505'; // Volta para preto
-        strategyText.style.color = '#F2F2F2';
-        creativityText.style.color = '#F2F2F2';
-        heroTargets.forEach(target => target.style.color = '#F2F2F2');
-        if(bgStrategy) bgStrategy.style.opacity = '0';
-        if(bgCreativity) bgCreativity.style.opacity = '0';
-    };
+    // Remove a cor de fundo inicial
+    heroSection.style.backgroundColor = '#050505';
+
+    // Alterna entre as imagens a cada 10 segundos com fade
+    let currentImage = 'strategy';
+    setInterval(() => {
+        if (currentImage === 'strategy') {
+            // Muda para criatividade
+            if(bgStrategy) {
+                bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
+                bgStrategy.style.opacity = '0';
+            }
+            if(bgCreativity) {
+                bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
+                bgCreativity.style.opacity = '0.3';
+            }
+            currentImage = 'creativity';
+        } else {
+            // Muda para estratégia
+            if(bgCreativity) {
+                bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
+                bgCreativity.style.opacity = '0';
+            }
+            if(bgStrategy) {
+                bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
+                bgStrategy.style.opacity = '0.3';
+            }
+            currentImage = 'strategy';
+        }
+    }, 10000);
+} else {
+    // No desktop, começa com imagens escondidas
+    if(bgStrategy) bgStrategy.style.opacity = '0';
+    if(bgCreativity) bgCreativity.style.opacity = '0';
+}
+
+const resetHero = () => {
+    if (isMobile) return; // No mobile, mantém as imagens visíveis
+    
+    heroSection.style.transition = 'background-color 0.5s ease';
+    heroSection.style.backgroundColor = '#050505'; // Volta para preto
+    strategyText.style.color = '#F2F2F2';
+    creativityText.style.color = '#F2F2F2';
+    heroTargets.forEach(target => target.style.color = '#F2F2F2');
+    if(bgStrategy) bgStrategy.style.opacity = '0';
+    if(bgCreativity) bgCreativity.style.opacity = '0';
+};
 
     // Desktop: comportamento de hover
     if (!isMobile) {
