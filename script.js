@@ -24,15 +24,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configura estado inicial baseado no dispositivo
     if (isMobile) {
-        // No mobile, mostra ambas as imagens sempre
+        // No mobile, mostra imagem inicial e alterna cores
         if(bgStrategy) {
-            bgStrategy.style.opacity = '0.3';
+            bgStrategy.style.opacity = '0.5';
             bgStrategy.style.display = 'block';
         }
         if(bgCreativity) {
-            bgCreativity.style.opacity = '0.3';
+            bgCreativity.style.opacity = '0';
             bgCreativity.style.display = 'block';
         }
+
+        // Inicia com cor verde
+        heroSection.style.backgroundColor = '#CCFF00';
+
+        // Alterna entre as imagens E cores a cada 10 segundos com fade
+        let currentImage = 'strategy';
+        setInterval(() => {
+            if (currentImage === 'strategy') {
+                // Muda para criatividade (roxo)
+                heroSection.style.transition = 'background-color 1.5s ease-in-out';
+                heroSection.style.backgroundColor = '#E0C3FC';
+                
+                if(bgStrategy) {
+                    bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
+                    bgStrategy.style.opacity = '0';
+                }
+                if(bgCreativity) {
+                    bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
+                    bgCreativity.style.opacity = '0.5';
+                }
+                currentImage = 'creativity';
+            } else {
+                // Muda para estratégia (verde)
+                heroSection.style.transition = 'background-color 1.5s ease-in-out';
+                heroSection.style.backgroundColor = '#CCFF00';
+                
+                if(bgCreativity) {
+                    bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
+                    bgCreativity.style.opacity = '0';
+                }
+                if(bgStrategy) {
+                    bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
+                    bgStrategy.style.opacity = '0.5';
+                }
+                currentImage = 'strategy';
+            }
+        }, 10000);
     } else {
         // No desktop, começa com imagens escondidas
         if(bgStrategy) bgStrategy.style.opacity = '0';
@@ -40,9 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const resetHero = () => {
-        if (isMobile) return; // No mobile, mantém as imagens visíveis
+        if (isMobile) return; // No mobile, mantém as imagens e cores visíveis
         
-        heroSection.style.backgroundColor = ''; 
+        heroSection.style.transition = 'background-color 0.5s ease';
+        heroSection.style.backgroundColor = '#050505'; // Volta para preto
         strategyText.style.color = '#F2F2F2';
         creativityText.style.color = '#F2F2F2';
         heroTargets.forEach(target => target.style.color = '#F2F2F2');
@@ -53,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Desktop: comportamento de hover
     if (!isMobile) {
         strategyContainer.addEventListener('mouseenter', () => {
+            heroSection.style.transition = 'background-color 0.5s ease';
             heroSection.style.backgroundColor = '#CCFF00';
             strategyText.style.color = '#F2F2F2';
             creativityText.style.color = '#050505';
@@ -62,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         strategyContainer.addEventListener('mouseleave', resetHero);
 
         creativityContainer.addEventListener('mouseenter', () => {
+            heroSection.style.transition = 'background-color 0.5s ease';
             heroSection.style.backgroundColor = '#E0C3FC';
             creativityText.style.color = '#F2F2F2';
             strategyText.style.color = '#050505';
