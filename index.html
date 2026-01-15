@@ -30,7 +30,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* Base Styles */
         html {
             scroll-behavior: smooth;
         }
@@ -38,7 +37,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* Scrollbar Hiding */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -46,11 +44,9 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Grain Overlay */
         .grain-overlay {
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
         }
-        /* Animations */
         @keyframes spin-linear {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -58,7 +54,6 @@
         .animate-spin-slow {
             animation: spin-linear 10s linear infinite;
         }
-        /* Marquee Animation */
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -66,11 +61,9 @@
         .marquee-content {
             animation: marquee 20s linear infinite;
         }
-        /* Text Stroke */
         .text-stroke {
             -webkit-text-stroke: 1px #F2F2F2;
         }
-        /* Reveal Animations Classes */
         .reveal-left {
             transform: translateX(-100px);
             opacity: 0;
@@ -98,11 +91,9 @@
             transform: scale(1);
             opacity: 1;
         }
-        /* Hero Text Hover Effect */
         .hero-text {
             transition: color 0.3s ease;
         }
-        /* Scroll Reveal General */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -112,10 +103,8 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Delay Utilities */
         .delay-100 { transition-delay: 0.1s; }
         .delay-200 { transition-delay: 0.2s; }
-        /* Methodology underline expansion */
         .animate-expand {
             width: 0%;
             transition: width 0.8s ease-out;
@@ -123,7 +112,6 @@
         .animate-expand.visible {
             width: 100%;
         }
-        /* Mobile Menu Animation */
         .mobile-menu-link {
             opacity: 0;
             transform: translateY(20px);
@@ -137,7 +125,6 @@
         #mobile-menu.active .mobile-menu-link:nth-child(2) { transition-delay: 0.2s; }
         #mobile-menu.active .mobile-menu-link:nth-child(3) { transition-delay: 0.3s; }
         #mobile-menu.active .mobile-menu-link:nth-child(4) { transition-delay: 0.4s; }
-        /* Cursor Area */
         .cursor-none-area {
             cursor: none;
         }
@@ -168,7 +155,6 @@
         </button>
     </header>
 
-    <!-- Mobile Menu -->
     <div class="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500" id="mobile-menu">
         <nav class="flex flex-col gap-6 text-center">
             <a href="#problem" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">O Problema</a>
@@ -195,14 +181,14 @@
         
         <section class="h-screen relative flex flex-col items-center justify-center py-20 overflow-hidden transition-colors duration-500 ease-in-out" id="hero">
             
-            <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0 md:opacity-0" id="hero-bg-strategy">
-    <img src="https://images.unsplash.com/photo-1761599821310-da0d6356b4f3?q=80&w=1080&auto=format&fit=crop" alt="Strategy Background" class="w-full h-full object-cover grayscale blur-[2px] md:blur-none">
-    <div class="absolute inset-0 bg-black/75 md:bg-transparent grain-overlay"></div>
-</div>
-<div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500 opacity-0 md:opacity-0" id="hero-bg-creativity">
-    <img src="https://images.unsplash.com/photo-1761977317692-4561ab4845e4?q=80&w=1080&auto=format&fit=crop" alt="Creativity Background" class="w-full h-full object-cover blur-[2px] md:blur-none">
-    <div class="absolute inset-0 bg-black/75 md:bg-transparent grain-overlay"></div>
-</div>
+            <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500" id="hero-bg-strategy">
+                <img src="https://images.unsplash.com/photo-1761599821310-da0d6356b4f3?q=80&w=1080&auto=format&fit=crop" alt="Strategy Background" class="w-full h-full object-cover grayscale blur-[2px] md:blur-none">
+                <div class="absolute inset-0 bg-black/75 md:bg-transparent grain-overlay"></div>
+            </div>
+            <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500" id="hero-bg-creativity">
+                <img src="https://images.unsplash.com/photo-1761977317692-4561ab4845e4?q=80&w=1080&auto=format&fit=crop" alt="Creativity Background" class="w-full h-full object-cover blur-[2px] md:blur-none">
+                <div class="absolute inset-0 bg-black/75 md:bg-transparent grain-overlay"></div>
+            </div>
 
             <div class="flex flex-col w-full max-w-6xl gap-8 md:gap-4 relative z-10">
                 <div class="self-center md:self-start relative z-10 hero-text-container" data-side="strategy">
@@ -329,40 +315,40 @@
                 <span id="cursor-text"></span>
             </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px]">
-                    <div class="group relative bg-[#E0C3FC] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger" data-cursor="Identidade Real">
-                        <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-4xl font-bold">Design</h3>
-                        <p class="text-xl font-medium max-w-xs">Marcas que não precisam gritar para serem ouvidas.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px]">
+                <div class="group relative bg-[#E0C3FC] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger" data-cursor="Identidade Real">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
                     </div>
-                    <div class="group relative bg-[#FF6B6B] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger" data-cursor="Storytelling Visual">
-                        <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-4xl font-bold">Audiovisual</h3>
-                        <p class="text-xl font-medium max-w-xs">Conteúdo que prende a atenção e conta histórias.</p>
+                    <h3 class="text-4xl font-bold">Design</h3>
+                    <p class="text-xl font-medium max-w-xs">Marcas que não precisam gritar para serem ouvidas.</p>
+                </div>
+                <div class="group relative bg-[#FF6B6B] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger" data-cursor="Storytelling Visual">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
                     </div>
-                    <div class="group relative border border-[#333] rounded-3xl p-8 flex flex-col justify-between hover:border-[#F2F2F2] transition-colors duration-300 bg-[#0a0a0a] cursor-trigger" data-cursor="Sem preencher feed">
-                        <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
-                            <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-4xl font-bold text-transparent text-stroke hover:text-[#CCFF00] transition-colors duration-300">Gestão de redes</h3>
-                        <p class="text-xl text-[#888] group-hover:text-[#F2F2F2] transition-colors">Estratégia que gera conversão, não likes.</p>
+                    <h3 class="text-4xl font-bold">Audiovisual</h3>
+                    <p class="text-xl font-medium max-w-xs">Conteúdo que prende a atenção e conta histórias.</p>
+                </div>
+                <div class="group relative border border-[#333] rounded-3xl p-8 flex flex-col justify-between hover:border-[#F2F2F2] transition-colors duration-300 bg-[#0a0a0a] cursor-trigger" data-cursor="Sem preencher feed">
+                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
+                        <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
                     </div>
-                    <div class="group relative rounded-3xl overflow-hidden cursor-trigger flex flex-col justify-between p-8" data-cursor="Direção Estratégica">
-                        <img src="https://images.unsplash.com/photo-1634326080825-985cfc816db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Consulting" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
-                        <div class="relative z-10 self-end opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                            <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
-                        </div>
-                        <div class="relative z-10 text-white">
-                            <h3 class="text-4xl font-bold mb-2">Consultoria</h3>
-                            <p class="text-lg text-[#ddd]">Mentoria para times in-house e diretores criativos.</p>
-                        </div>
+                    <h3 class="text-4xl font-bold text-transparent text-stroke hover:text-[#CCFF00] transition-colors duration-300">Gestão de redes</h3>
+                    <p class="text-xl text-[#888] group-hover:text-[#F2F2F2] transition-colors">Estratégia que gera conversão, não likes.</p>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden cursor-trigger flex flex-col justify-between p-8" data-cursor="Direção Estratégica">
+                    <img src="https://images.unsplash.com/photo-1634326080825-985cfc816db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Consulting" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                    <div class="relative z-10 self-end opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                        <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
+                    </div>
+                    <div class="relative z-10 text-white">
+                        <h3 class="text-4xl font-bold mb-2">Consultoria</h3>
+                        <p class="text-lg text-[#ddd]">Mentoria para times in-house e diretores criativos.</p>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section class="relative min-h-screen bg-[#111] overflow-hidden flex flex-col justify-center items-center" id="social-proof">
@@ -406,164 +392,7 @@
         </footer>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-
-            setTimeout(() => {
-                document.querySelector('.reveal-left')?.classList.add('visible');
-                document.querySelector('.reveal-right')?.classList.add('visible');
-                document.querySelectorAll('.reveal-scale').forEach(el => el.classList.add('visible'));
-            }, 100);
-
-            // --- HERO SECTION INTERACTIVITY ---
-            const heroSection = document.getElementById('hero');
-            const strategyContainer = document.querySelector('[data-side="strategy"]');
-            const creativityContainer = document.querySelector('[data-side="creativity"]');
-            const strategyText = strategyContainer.querySelector('.hero-text');
-            const creativityText = creativityContainer.querySelector('.hero-text');
-            const heroTargets = document.querySelectorAll('.hero-text-target'); 
-
-            const bgStrategy = document.getElementById('hero-bg-strategy');
-            const bgCreativity = document.getElementById('hero-bg-creativity');
-
-            const resetHero = () => {
-                heroSection.style.backgroundColor = ''; 
-                strategyText.style.color = '#F2F2F2';
-                creativityText.style.color = '#F2F2F2';
-                heroTargets.forEach(target => target.style.color = '#F2F2F2');
-                if(bgStrategy) bgStrategy.style.opacity = '0';
-                if(bgCreativity) bgCreativity.style.opacity = '0';
-            };
-
-            strategyContainer.addEventListener('mouseenter', () => {
-                heroSection.style.backgroundColor = '#CCFF00';
-                strategyText.style.color = '#F2F2F2';
-                creativityText.style.color = '#050505';
-                heroTargets.forEach(target => target.style.color = '#050505');
-                if(bgStrategy) bgStrategy.style.opacity = '0.15';
-            });
-            strategyContainer.addEventListener('mouseleave', resetHero);
-
-            creativityContainer.addEventListener('mouseenter', () => {
-                heroSection.style.backgroundColor = '#E0C3FC';
-                creativityText.style.color = '#F2F2F2';
-                strategyText.style.color = '#050505';
-                heroTargets.forEach(target => target.style.color = '#050505');
-                if(bgCreativity) bgCreativity.style.opacity = '0.2';
-            });
-            creativityContainer.addEventListener('mouseleave', resetHero);
-
-            // --- SCROLL OBSERVER ---
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        const expand = entry.target.querySelector('.animate-expand');
-                        if (expand) expand.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-            document.querySelectorAll('.scroll-reveal, .animate-expand').forEach(el => observer.observe(el));
-
-            // --- METHODOLOGY SLIDER ---
-            const methodologySection = document.getElementById('methodology');
-            const slider = document.getElementById('methodology-slider');
-            if (methodologySection && slider) {
-                window.addEventListener('scroll', () => {
-                    const rect = methodologySection.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                        slider.style.transform = `translateX(${Math.min(Math.max(progress * -20, -20), 0)}%)`;
-                    }
-                });
-            }
-
-            // --- CUSTOM CURSOR ---
-            const cursor = document.getElementById('custom-cursor');
-            const cursorText = document.getElementById('cursor-text');
-            if (cursor && window.innerWidth >= 768) {
-                document.addEventListener('mousemove', (e) => {
-                    cursor.style.transform = `translate(${e.clientX + 10}px, ${e.clientY + 10}px)`;
-                });
-                document.getElementById('authority-section').addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
-                document.getElementById('authority-section').addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-                document.querySelectorAll('.cursor-trigger').forEach(trigger => {
-                    trigger.addEventListener('mouseenter', () => {
-                        cursorText.innerText = trigger.getAttribute('data-cursor');
-                        cursor.style.opacity = '1';
-                    });
-                    trigger.addEventListener('mouseleave', () => cursorText.innerText = '');
-                });
-            }
-
-            // --- SOCIAL PROOF SUN RISING ---
-            const sun = document.getElementById('rising-sun');
-            const socialSection = document.getElementById('social-proof');
-            if (sun && socialSection) {
-                window.addEventListener('scroll', () => {
-                    const rect = socialSection.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
-                    const isMobile = window.innerWidth < 768;
-                    const activationMargin = isMobile ? 800 : 200;
-
-                    if (rect.top < windowHeight + activationMargin && rect.bottom > -200) {
-                        const offset = isMobile ? windowHeight * 0.8 : 0;
-                        let progress = Math.min(Math.max((windowHeight + offset - rect.top) / (rect.height + windowHeight), 0), 1);
-                        sun.style.transform = `translate(-50%, ${100 - (progress * (isMobile ? 250 : 120))}%)`;
-                        sun.style.opacity = Math.min(progress * (isMobile ? 4 : 3), 1);
-                    }
-                });
-            }
-
-            // --- HEADER BLUR ---
-            const header = document.getElementById('main-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('backdrop-blur-md', 'bg-black/50', 'py-4');
-                    header.classList.remove('py-6', 'mix-blend-difference');
-                } else {
-                    header.classList.remove('backdrop-blur-md', 'bg-black/50', 'py-4');
-                    header.classList.add('py-6', 'mix-blend-difference');
-                }
-            });
-
-            // --- MOBILE MENU ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-            let menuOpen = false;
-
-            const toggleMenu = () => {
-                menuOpen = !menuOpen;
-                if (menuOpen) {
-                    mobileMenu.classList.add('active');
-                    mobileMenu.style.opacity = '1';
-                    mobileMenu.style.pointerEvents = 'auto';
-                    document.body.style.overflow = 'hidden';
-                    const icon = mobileMenuButton.querySelector('i');
-                    icon.setAttribute('data-lucide', 'x');
-                    lucide.createIcons();
-                } else {
-                    mobileMenu.classList.remove('active');
-                    mobileMenu.style.opacity = '0';
-                    mobileMenu.style.pointerEvents = 'none';
-                    document.body.style.overflow = '';
-                    const icon = mobileMenuButton.querySelector('i');
-                    icon.setAttribute('data-lucide', 'menu');
-                    lucide.createIcons();
-                }
-            };
-
-            mobileMenuButton.addEventListener('click', toggleMenu);
-
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    toggleMenu();
-                });
-            });
-        });
-    </script>
+    <!-- Link para o arquivo JS externo -->
+    <script src="script.js"></script>
 </body>
 </html>
