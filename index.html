@@ -12,21 +12,22 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Bricolage Grotesque"', 'sans-serif'],
-                        handwritten: ['"Caveat"', 'cursive'],
-                    },
-                    colors: {
-                        neonGreen: '#CCFF00',
-                        neonPurple: '#E0C3FC',
-                    }
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['"Mona Sans"', 'sans-serif'],
+                    bricolage: ['"Bricolage Grotesque"', 'sans-serif'],
+                    handwritten: ['"Caveat"', 'cursive'],
+                },
+                colors: {
+                    neonGreen: '#CCFF00',
+                    neonPurple: '#E0C3FC',
                 }
             }
         }
-    </script>
+    }
+</script>
     
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -193,9 +194,9 @@
 
             <div class="flex flex-col w-full max-w-6xl gap-8 md:gap-4 relative z-10">
                 <div class="self-center md:self-start relative z-10 hero-text-container" data-side="strategy">
-                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase transition-colors duration-300 cursor-pointer text-[#F2F2F2] reveal-left hero-text text-center md:text-left">
-                        Estratégia
-                    </h1>
+                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-bricolage tracking-tighter uppercase transition-colors duration-300 cursor-pointer text-[#F2F2F2] reveal-left hero-text text-center md:text-left">
+    Estratégia
+</h1>
                 </div>
 
                 <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none md:pointer-events-auto">
@@ -207,9 +208,9 @@
                 </div>
 
                 <div class="self-center md:self-end relative z-10 hero-text-container" data-side="creativity">
-                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase transition-colors duration-300 cursor-pointer md:text-right text-[#F2F2F2] reveal-right hero-text text-center">
-                        Criatividade
-                    </h1>
+                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-bricolage tracking-tighter uppercase transition-colors duration-300 cursor-pointer md:text-right text-[#F2F2F2] reveal-right hero-text text-center">
+    Criatividade
+</h1>
                 </div>
             </div>
 
@@ -295,7 +296,7 @@
                     <div class="md:w-2/3 overflow-hidden" id="methodology-slider-container">
                         <div class="flex gap-8 w-[150%] transition-transform duration-100 ease-out" id="methodology-slider">
                             <div class="w-full aspect-[4/3] bg-black text-[#F2F2F2] p-8 rounded-2xl flex items-center justify-center">
-                                <p class="text-3xl md:text-4xl font-bold text-center">"Não somos agência.<br/>Somos extensão."</p>
+                                <p class="text-3xl md:text-4xl font-bold text-center">"Não somos mais uma agência,<br/>somos a última."</p>
                             </div>
                             <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                                 <img src="https://i.ibb.co/PzVKCf7n/img-2180.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Team" class="w-full h-full object-cover">
@@ -311,51 +312,64 @@
             </div>
         </section>
 
-        <section class="bg-[#050505] text-[#F2F2F2] py-32 relative cursor-none-area" id="authority-section">
+        <section class="bg-[#050505] text-[#F2F2F2] py-20 relative cursor-none-area" id="authority-section">
     <div id="custom-cursor" class="pointer-events-none fixed top-0 left-0 z-50 bg-[#050505] text-[#F2F2F2] border border-[#F2F2F2] px-4 py-2 rounded-xl rounded-bl-none whitespace-nowrap text-sm font-bold uppercase tracking-wider hidden transform transition-transform duration-75">
         <span id="cursor-text"></span>
     </div>
+
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            <!-- Design -->
-            <a href="https://wa.me/5551998638144?text=Ol%C3%A1!%20Estou%20precisando%20de%20Design%20%F0%9F%92%9A" target="_blank" rel="noopener noreferrer" class="group relative bg-[#E0C3FC] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger min-h-[300px]" data-cursor="Identidade Real">
-                <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-6xl mx-auto">
+            
+            <a href="https://wa.me/5551998638144?text=Olá!%20Estou%20precisando%20de%20Design%20💚" 
+               target="_blank" rel="noopener noreferrer" 
+               class="group relative bg-[#E0C3FC] rounded-2xl p-6 text-[#050505] flex flex-col justify-center transition-all duration-300 hover:scale-[1.01] cursor-trigger min-h-[180px]" 
+               data-cursor="Design">
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-4xl font-bold">Design</h3>
-                <p class="text-xl font-medium max-w-xs">Marcas que não precisam gritar para serem ouvidas.</p>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2">Identidade Visual e Rebranding</h3>
+                <p class="text-lg font-medium opacity-90">Identidade que traduz essência, não só estética.</p>
             </a>
 
-            <!-- Audiovisual -->
-            <a href="https://wa.me/5551998638144?text=Ol%C3%A1!%20Estou%20precisando%20de%20Audiovisual%20%F0%9F%93%B8" target="_blank" rel="noopener noreferrer" class="group relative bg-[#FF6B6B] rounded-3xl p-8 text-[#050505] flex flex-col justify-between overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-trigger min-h-[300px]" data-cursor="Storytelling Visual">
-                <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
+            <a href="https://wa.me/5551998638144?text=Olá!%20Estou%20precisando%20de%20Audiovisual%20📸" 
+               target="_blank" rel="noopener noreferrer" 
+               class="group relative bg-[#FF6B6B] rounded-2xl p-6 text-[#050505] flex flex-col justify-center transition-all duration-300 hover:scale-[1.01] cursor-trigger min-h-[180px]" 
+               data-cursor="Audiovisual">
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-4xl font-bold">Audiovisual</h3>
-                <p class="text-xl font-medium max-w-xs">Conteúdo que prende a atenção e conta histórias.</p>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2">Audiovisual</h3>
+                <p class="text-lg font-medium opacity-90">Fotos e vídeos que constroem narrativa.</p>
             </a>
 
-            <!-- Gestão de redes -->
-            <a href="https://wa.me/5551991066818?text=Ol%C3%A1!%20Estou%20precisando%20de%20ajuda%20com%20a%20minha%20rede%20social%20%F0%9F%A7%A1" target="_blank" rel="noopener noreferrer" class="group relative border border-[#333] rounded-3xl p-8 flex flex-col justify-between hover:border-[#F2F2F2] transition-colors duration-300 bg-[#0a0a0a] cursor-trigger min-h-[300px]" data-cursor="Sem preencher feed">
-                <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
-                    <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
+            <a href="https://wa.me/5551991066818?text=Olá!%20Estou%20precisando%20de%20ajuda%20com%20a%20minha%20rede%20social%20🧡" 
+               target="_blank" rel="noopener noreferrer" 
+               class="group relative border border-[#333] bg-[#0a0a0a] rounded-2xl p-6 flex flex-col justify-center transition-all duration-300 hover:border-[#F2F2F2] hover:scale-[1.01] cursor-trigger min-h-[180px]" 
+               data-cursor="Social Media">
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
+                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-4xl font-bold text-transparent text-stroke hover:text-[#CCFF00] transition-colors duration-300">Gestão de redes</h3>
-                <p class="text-xl text-[#888] group-hover:text-[#F2F2F2] transition-colors">Estratégia que gera conversão, não likes.</p>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-[#F2F2F2]">Gestão de Redes</h3>
+                <p class="text-lg text-[#888] group-hover:text-[#F2F2F2] transition-colors">Estratégia que gera autoridade, não likes.</p>
             </a>
 
-            <!-- Consultoria -->
-            <a href="https://wa.me/5551998638144?text=Ol%C3%A1!%20Estou%20precisando%20de%20Consultoria%20%F0%9F%92%BC" target="_blank" rel="noopener noreferrer" class="group relative rounded-3xl overflow-hidden cursor-trigger flex flex-col justify-between p-8 min-h-[300px]" data-cursor="Direção Estratégica">
-                <img src="https://images.unsplash.com/photo-1634326080825-985cfc816db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Consulting" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
-                <div class="relative z-10 self-end opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                    <i data-lucide="arrow-up-right" class="w-8 h-8"></i>
+            <a href="https://wa.me/5551998638144?text=Olá!%20Estou%20precisando%20de%20Tráfego%20Pago%20🚀" 
+               target="_blank" rel="noopener noreferrer" 
+               class="group relative rounded-2xl overflow-hidden cursor-trigger flex flex-col justify-center p-6 min-h-[180px] transition-all duration-300 hover:scale-[1.01]" 
+               data-cursor="Ads">
+                <img src="https://images.unsplash.com/photo-1634326080825-985cfc816db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" 
+                     alt="Tráfego Pago" 
+                     class="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-500">
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
                 </div>
                 <div class="relative z-10 text-white">
-                    <h3 class="text-4xl font-bold mb-2">Consultoria</h3>
-                    <p class="text-lg text-[#ddd]">Mentoria para times in-house e diretores criativos.</p>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-2">Tráfego Pago</h3>
+                    <p class="text-lg text-[#ddd]">Investimento guiado por estratégia.</p>
                 </div>
             </a>
+
         </div>
     </div>
 </section>
@@ -369,16 +383,47 @@
                     <path d="M0,600 L0,200 C200,300 400,100 720,250 C1000,400 1200,150 1440,300 L1440,600 Z" fill="currentColor" />
                 </svg>
             </div>
-            <div class="relative z-20 container mx-auto px-4 text-center mt-[-10vh]">
-                <h2 class="text-6xl md:text-8xl font-bold text-[#F2F2F2] mb-12 scroll-reveal">
-                    Marca forte <br /><span class="italic font-serif text-[#E0C3FC]">pensa junto</span>.
-                </h2>
-                <div class="bg-[#1a1a1a] p-6 rounded-2xl max-w-md mx-auto border border-[#333] text-left scroll-reveal delay-200">
-                    <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                        <div><p class="text-white font-bold text-sm">Ana Silva</p><p class="text-gray-400 text-xs">CMO @ TechStart</p></div>
-                    </div>
+            <div class="relative z-20 container mx-auto px-4 text-center mt-0 md:mt-[-10vh]">
+                <h2 class="text-6xl md:text-8xl font-bold font-sans text-[#F2F2F2] mb-12 scroll-reveal">
+    Marca forte <br />pensa <span class="italic text-[#E0C3FC] underline decoration-[#E0C3FC] decoration-4 underline-offset-8">junto</span>.
+</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <!-- Depoimento 1 -->
+    <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left scroll-reveal">
+        <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+            <div>
+                <p class="text-white font-bold text-sm">Ana Silva</p>
+                <p class="text-gray-400 text-xs">CMO @ TechStart</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Depoimento 2 -->
+    <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left scroll-reveal delay-100">
+        <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+            <div>
+                <p class="text-white font-bold text-sm">Carlos Mendes</p>
+                <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Depoimento 3 -->
+    <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left scroll-reveal delay-200">
+        <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+            <div>
+                <p class="text-white font-bold text-sm">Marina Costa</p>
+                <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </section>
