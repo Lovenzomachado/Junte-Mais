@@ -2,6 +2,7 @@
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: "Mona Sans", sans-serif !important;
 }
 /* Scrollbar Hiding */
 .no-scrollbar::-webkit-scrollbar {
