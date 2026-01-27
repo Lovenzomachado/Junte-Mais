@@ -276,42 +276,51 @@ if (testimonialsMarquee) {
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
-    let animationID = 0;
 
     testimonialsMarquee.addEventListener('mousedown', dragStart);
-    testimonialsMarquee.addEventListener('touchstart', dragStart);
+    testimonialsMarquee.addEventListener('touchstart', dragStart, { passive: false });
     testimonialsMarquee.addEventListener('mouseup', dragEnd);
     testimonialsMarquee.addEventListener('touchend', dragEnd);
     testimonialsMarquee.addEventListener('mouseleave', dragEnd);
     testimonialsMarquee.addEventListener('mousemove', drag);
-    testimonialsMarquee.addEventListener('touchmove', drag);
+    testimonialsMarquee.addEventListener('touchmove', drag, { passive: false });
+
+    function getComputedTranslateX(element) {
+        const style = window.getComputedStyle(element);
+        const matrix = style.transform;
+        if (matrix === 'none') return 0;
+        const matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ');
+        return parseFloat(matrixValues[4]);
+    }
 
     function dragStart(e) {
         isDragging = true;
         startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        animationID = requestAnimationFrame(animation);
+        
+        // Captura posição atual da animação CSS
+        const currentX = getComputedTranslateX(testimonialsMarquee);
+        prevTranslate = currentX;
+        currentTranslate = currentX;
+        
         testimonialsMarquee.classList.add('dragging');
+        testimonialsMarquee.style.transform = `translateX(${currentX}px)`;
     }
 
     function drag(e) {
         if (!isDragging) return;
         e.preventDefault();
         const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        currentTranslate = prevTranslate + currentPosition - startPos;
+        currentTranslate = prevTranslate + (currentPosition - startPos);
+        testimonialsMarquee.style.transform = `translateX(${currentTranslate}px)`;
     }
 
     function dragEnd() {
+        if (!isDragging) return;
         isDragging = false;
-        cancelAnimationFrame(animationID);
-        prevTranslate = currentTranslate;
+        
+        // Remove inline transform e volta pra animação CSS
+        testimonialsMarquee.style.transform = '';
         testimonialsMarquee.classList.remove('dragging');
-    }
-
-    function animation() {
-        if (isDragging) {
-            testimonialsMarquee.style.transform = `translateX(${currentTranslate}px)`;
-            requestAnimationFrame(animation);
-        }
     }
 
     // Previne seleção de texto durante drag
