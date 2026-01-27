@@ -409,76 +409,75 @@
                 <h2 class="text-6xl md:text-8xl font-bold font-sans text-[#F2F2F2] mb-12 scroll-reveal">
     Marca forte <br />pensa <span class="italic text-[#E0C3FC] underline decoration-[#E0C3FC] decoration-4 underline-offset-8">junto</span>.
 </h2>
-                <div class="overflow-hidden w-full">
-    <div class="testimonials-marquee flex gap-6">
-        <!-- Grupo 1 -->
-        <div class="flex gap-6 shrink-0">
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Ana Silva</p>
-                        <p class="text-gray-400 text-xs">CMO @ TechStart</p>
+                <!-- Desktop: Grid com 3 cards -->
+                <div class="hidden md:grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
+                        <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                            <div>
+                                <p class="text-white font-bold text-sm">Ana Silva</p>
+                                <p class="text-gray-400 text-xs">CMO @ TechStart</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
+                        <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                            <div>
+                                <p class="text-white font-bold text-sm">Carlos Mendes</p>
+                                <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
+                        <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                            <div>
+                                <p class="text-white font-bold text-sm">Marina Costa</p>
+                                <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Carlos Mendes</p>
-                        <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+
+                <!-- Mobile: Carousel com swipe -->
+                <div class="md:hidden overflow-hidden w-full">
+                    <div class="testimonials-carousel flex gap-6 transition-transform duration-300 ease-out" id="testimonials-carousel">
+                        <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-full shrink-0 snap-center">
+                            <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                                <div>
+                                    <p class="text-white font-bold text-sm">Ana Silva</p>
+                                    <p class="text-gray-400 text-xs">CMO @ TechStart</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-full shrink-0 snap-center">
+                            <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                                <div>
+                                    <p class="text-white font-bold text-sm">Carlos Mendes</p>
+                                    <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-full shrink-0 snap-center">
+                            <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                                <div>
+                                    <p class="text-white font-bold text-sm">Marina Costa</p>
+                                    <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Marina Costa</p>
-                        <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Grupo 2 (duplicado) -->
-        <div class="flex gap-6 shrink-0">
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Ana Silva</p>
-                        <p class="text-gray-400 text-xs">CMO @ TechStart</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Carlos Mendes</p>
-                        <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Marina Costa</p>
-                        <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
                 </div>
             </div>
         </section>
