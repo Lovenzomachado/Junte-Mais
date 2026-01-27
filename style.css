@@ -102,3 +102,27 @@ body {
         display: none !important;
     }
 }
+
+@keyframes marquee-testimonials {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.testimonials-marquee {
+    animation: marquee-testimonials 20s linear infinite;
+    cursor: grab;
+}
+@media (min-width: 768px) {
+    .testimonials-marquee {
+        animation: marquee-testimonials 30s linear infinite;
+    }
+}
+.testimonials-marquee:hover {
+    animation-play-state: paused;
+}
+.testimonials-marquee:active {
+    cursor: grabbing;
+}
+.testimonials-marquee.dragging {
+    animation-play-state: paused;
+    cursor: grabbing;
+}
