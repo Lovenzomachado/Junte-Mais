@@ -267,3 +267,53 @@ const resetHero = () => {
         });
     });
 });
+
+// --- TESTIMONIALS DRAG ---
+const testimonialsMarquee = document.querySelector('.testimonials-marquee');
+
+if (testimonialsMarquee) {
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
+
+    testimonialsMarquee.addEventListener('mousedown', dragStart);
+    testimonialsMarquee.addEventListener('touchstart', dragStart);
+    testimonialsMarquee.addEventListener('mouseup', dragEnd);
+    testimonialsMarquee.addEventListener('touchend', dragEnd);
+    testimonialsMarquee.addEventListener('mouseleave', dragEnd);
+    testimonialsMarquee.addEventListener('mousemove', drag);
+    testimonialsMarquee.addEventListener('touchmove', drag);
+
+    function dragStart(e) {
+        isDragging = true;
+        startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        animationID = requestAnimationFrame(animation);
+        testimonialsMarquee.classList.add('dragging');
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        currentTranslate = prevTranslate + currentPosition - startPos;
+    }
+
+    function dragEnd() {
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        prevTranslate = currentTranslate;
+        testimonialsMarquee.classList.remove('dragging');
+    }
+
+    function animation() {
+        if (isDragging) {
+            testimonialsMarquee.style.transform = `translateX(${currentTranslate}px)`;
+            requestAnimationFrame(animation);
+        }
+    }
+
+    // Previne seleção de texto durante drag
+    testimonialsMarquee.addEventListener('dragstart', (e) => e.preventDefault());
+}
