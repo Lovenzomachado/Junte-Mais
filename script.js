@@ -268,61 +268,174 @@ const resetHero = () => {
     });
 });
 
-// --- TESTIMONIALS DRAG ---
-const testimonialsMarquee = document.querySelector('.testimonials-marquee');
+// --- TESTIMONIALS CAROUSEL MOBILE ---
+const testimonialsCarousel = document.getElementById('testimonials-carousel');
 
-if (testimonialsMarquee) {
+if (testimonialsCarousel) {
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
-
-    testimonialsMarquee.addEventListener('mousedown', dragStart);
-    testimonialsMarquee.addEventListener('touchstart', dragStart, { passive: false });
-    testimonialsMarquee.addEventListener('mouseup', dragEnd);
-    testimonialsMarquee.addEventListener('touchend', dragEnd);
-    testimonialsMarquee.addEventListener('mouseleave', dragEnd);
-    testimonialsMarquee.addEventListener('mousemove', drag);
-    testimonialsMarquee.addEventListener('touchmove', drag, { passive: false });
-
-    function getComputedTranslateX(element) {
-        const style = window.getComputedStyle(element);
-        const matrix = style.transform;
-        if (matrix === 'none') return 0;
-        const matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ');
-        return parseFloat(matrixValues[4]);
+    let animationId = 0;
+    let currentIndex = 0;
+    
+    const cards = testimonialsCarousel.querySelectorAll('.testimonial-card');
+    const gap = 24; // gap-6 = 24px
+    
+    // Função para calcular o tamanho do card
+    function getCardWidth() {
+        if (cards.length === 0) return window.innerWidth - 32; // 32px de padding padrão
+        // O card tem w-full, então pega a largura do container pai (que tem overflow-hidden)
+        const container = testimonialsCarousel.parentElement;
+        if (!container) return window.innerWidth - 32;
+        
+        // Pega a largura do container considerando padding
+        const containerStyle = window.getComputedStyle(container);
+        const containerWidth = container.offsetWidth;
+        
+        // O card ocupa 100% da largura do container, então retorna a largura do container
+        return containerWidth;
+    }
+    
+    // Função para definir a posição
+    function setPositionX() {
+        testimonialsCarousel.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    
+    // Função para resetar posição
+    function resetPosition() {
+        currentIndex = 0;
+        currentTranslate = 0;
+        prevTranslate = 0;
+        setPositionX();
     }
 
+    // Função para animar suavemente
+    function animation() {
+        setPositionX();
+        if (isDragging) requestAnimationFrame(animation);
+    }
+
+    // Inicia o drag
     function dragStart(e) {
+        // Só funciona no mobile
+        if (window.innerWidth >= 768) return;
+        
         isDragging = true;
         startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        prevTranslate = currentTranslate;
         
-        // Captura posição atual da animação CSS
-        const currentX = getComputedTranslateX(testimonialsMarquee);
-        prevTranslate = currentX;
-        currentTranslate = currentX;
+        testimonialsCarousel.classList.add('dragging');
+        testimonialsCarousel.style.transition = 'none'; // Remove transição durante drag
+        animationId = requestAnimationFrame(animation);
         
-        testimonialsMarquee.classList.add('dragging');
-        testimonialsMarquee.style.transform = `translateX(${currentX}px)`;
+        // Previne scroll durante o drag
+        e.preventDefault();
     }
 
+    // Durante o drag
     function drag(e) {
         if (!isDragging) return;
-        e.preventDefault();
+        if (window.innerWidth >= 768) return;
+        
         const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        currentTranslate = prevTranslate + (currentPosition - startPos);
-        testimonialsMarquee.style.transform = `translateX(${currentTranslate}px)`;
+        const moved = currentPosition - startPos;
+        currentTranslate = prevTranslate + moved;
     }
 
+    // Finaliza o drag e faz snap
     function dragEnd() {
         if (!isDragging) return;
-        isDragging = false;
+        if (window.innerWidth >= 768) return;
         
-        // Remove inline transform e volta pra animação CSS
-        testimonialsMarquee.style.transform = '';
-        testimonialsMarquee.classList.remove('dragging');
+        isDragging = false;
+        cancelAnimationFrame(animationId);
+        
+        const cardWidth = getCardWidth();
+        const cardWidthWithGap = cardWidth + gap;
+        
+        // Calcula qual card deve aparecer baseado na posição atual
+        // Usa a posição absoluta para determinar o índice
+        const moved = currentTranslate - prevTranslate;
+        const threshold = cardWidth * 0.25; // 25% do card para mudar
+        
+        // Determina a direção do movimento
+        if (Math.abs(moved) > threshold) {
+            if (moved > 0 && currentIndex > 0) {
+                // Arrastou para a direita (mostra card anterior)
+                currentIndex--;
+            } else if (moved < 0 && currentIndex < cards.length - 1) {
+                // Arrastou para a esquerda (mostra próximo card)
+                currentIndex++;
+            }
+        }
+        
+        // Garante que o índice está dentro dos limites
+        currentIndex = Math.max(0, Math.min(currentIndex, cards.length - 1));
+        
+        // Calcula a posição final com snap
+        currentTranslate = -currentIndex * cardWidthWithGap;
+        
+        // Aplica transição suave para o snap
+        testimonialsCarousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        setPositionX();
+        
+        // Remove a classe dragging após a transição
+        setTimeout(() => {
+            testimonialsCarousel.classList.remove('dragging');
+        }, 300);
     }
 
-    // Previne seleção de texto durante drag
-    testimonialsMarquee.addEventListener('dragstart', (e) => e.preventDefault());
+    // Inicializa apenas no mobile
+    function initCarousel() {
+        if (window.innerWidth < 768) {
+            // Event listeners (só adiciona uma vez)
+            if (!testimonialsCarousel.hasAttribute('data-initialized')) {
+                testimonialsCarousel.addEventListener('mousedown', dragStart);
+                testimonialsCarousel.addEventListener('touchstart', dragStart, { passive: false });
+                testimonialsCarousel.addEventListener('mouseup', dragEnd);
+                testimonialsCarousel.addEventListener('touchend', dragEnd);
+                testimonialsCarousel.addEventListener('mouseleave', dragEnd);
+                testimonialsCarousel.addEventListener('mousemove', drag);
+                testimonialsCarousel.addEventListener('touchmove', drag, { passive: false });
+                
+                // Previne seleção de texto durante drag
+                testimonialsCarousel.addEventListener('selectstart', (e) => e.preventDefault());
+                testimonialsCarousel.addEventListener('dragstart', (e) => e.preventDefault());
+                
+                testimonialsCarousel.setAttribute('data-initialized', 'true');
+            }
+            
+            // Inicializa posição
+            resetPosition();
+        } else {
+            // Remove event listeners e reseta no desktop
+            resetPosition();
+        }
+    }
+    
+    // Aguarda o DOM estar pronto antes de inicializar
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initCarousel, 100); // Pequeno delay para garantir que os estilos foram aplicados
+        });
+    } else {
+        setTimeout(initCarousel, 100);
+    }
+    
+    // Atualiza quando a janela redimensiona
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth < 768) {
+                const cardWidth = getCardWidth();
+                const cardWidthWithGap = cardWidth + gap;
+                currentTranslate = -currentIndex * cardWidthWithGap;
+                setPositionX();
+            } else {
+                resetPosition();
+            }
+        }, 250);
+    });
 }
