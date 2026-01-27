@@ -116,17 +116,27 @@ body {
 
 /* Testimonials Mobile - Carousel com snap */
 @media (max-width: 767px) {
+    /* Container pai do carousel */
     #testimonials-carousel {
         cursor: grab;
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
+        touch-action: pan-x;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+        will-change: transform;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
     }
     #testimonials-carousel.dragging {
         cursor: grabbing;
+        touch-action: none;
     }
     #testimonials-carousel .testimonial-card {
         flex-shrink: 0;
+        pointer-events: auto;
+        touch-action: pan-x;
     }
 }
