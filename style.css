@@ -103,26 +103,30 @@ body {
     }
 }
 
-@keyframes marquee-testimonials {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-.testimonials-marquee {
-    animation: marquee-testimonials 20s linear infinite;
-    cursor: grab;
-}
+/* Testimonials Desktop - Grid de 3 cards */
 @media (min-width: 768px) {
-    .testimonials-marquee {
-        animation: marquee-testimonials 30s linear infinite;
+    .testimonial-card {
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .testimonial-card:hover {
+        transform: translateY(-4px);
+        border-color: #555;
     }
 }
-.testimonials-marquee:hover {
-    animation-play-state: paused;
-}
-.testimonials-marquee:active {
-    cursor: grabbing;
-}
-.testimonials-marquee.dragging {
-    animation-play-state: paused;
-    cursor: grabbing;
+
+/* Testimonials Mobile - Carousel com snap */
+@media (max-width: 767px) {
+    #testimonials-carousel {
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    #testimonials-carousel.dragging {
+        cursor: grabbing;
+    }
+    #testimonials-carousel .testimonial-card {
+        flex-shrink: 0;
+    }
 }
