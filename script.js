@@ -269,32 +269,27 @@ const resetHero = () => {
 });
 
 // --- TESTIMONIALS CAROUSEL MOBILE ---
-const testimonialsCarousel = document.getElementById('testimonials-carousel');
-
-if (testimonialsCarousel) {
+document.addEventListener('DOMContentLoaded', () => {
+    const testimonialsCarousel = document.getElementById('testimonials-carousel');
+    
+    if (!testimonialsCarousel) return;
+    
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
-    let animationId = 0;
     let currentIndex = 0;
+    let touchStartX = 0;
+    let touchCurrentX = 0;
     
     const cards = testimonialsCarousel.querySelectorAll('.testimonial-card');
     const gap = 24; // gap-6 = 24px
     
     // Função para calcular o tamanho do card
     function getCardWidth() {
-        if (cards.length === 0) return window.innerWidth - 32; // 32px de padding padrão
-        // O card tem w-full, então pega a largura do container pai (que tem overflow-hidden)
         const container = testimonialsCarousel.parentElement;
         if (!container) return window.innerWidth - 32;
-        
-        // Pega a largura do container considerando padding
-        const containerStyle = window.getComputedStyle(container);
-        const containerWidth = container.offsetWidth;
-        
-        // O card ocupa 100% da largura do container, então retorna a largura do container
-        return containerWidth;
+        return container.offsetWidth;
     }
     
     // Função para definir a posição
@@ -309,133 +304,207 @@ if (testimonialsCarousel) {
         prevTranslate = 0;
         setPositionX();
     }
-
-    // Função para animar suavemente
-    function animation() {
+    
+    // Função para atualizar posição durante drag
+    function updatePosition() {
         setPositionX();
-        if (isDragging) requestAnimationFrame(animation);
+        if (isDragging) {
+            requestAnimationFrame(updatePosition);
+        }
     }
 
-    // Inicia o drag
-    function dragStart(e) {
-        // Só funciona no mobile
+    // Inicia o drag - TOUCH
+    function touchStart(e) {
         if (window.innerWidth >= 768) return;
+        if (!e.touches || !e.touches[0]) return;
         
-        isDragging = true;
-        startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        startPos = touchStartX;
         prevTranslate = currentTranslate;
+        isDragging = true;
         
         testimonialsCarousel.classList.add('dragging');
-        testimonialsCarousel.style.transition = 'none'; // Remove transição durante drag
-        animationId = requestAnimationFrame(animation);
+        testimonialsCarousel.style.transition = 'none';
+        testimonialsCarousel.style.willChange = 'transform';
         
-        // Previne scroll durante o drag
+        // Previne scroll da página durante o drag
         e.preventDefault();
     }
 
-    // Durante o drag
-    function drag(e) {
+    // Durante o drag - TOUCH
+    function touchMove(e) {
         if (!isDragging) return;
         if (window.innerWidth >= 768) return;
+        if (!e.touches || !e.touches[0]) return;
         
-        const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        const moved = currentPosition - startPos;
+        const touch = e.touches[0];
+        touchCurrentX = touch.clientX;
+        const moved = touchCurrentX - touchStartX;
         currentTranslate = prevTranslate + moved;
+        
+        // Previne scroll da página se estiver arrastando horizontalmente
+        const absMoved = Math.abs(moved);
+        if (absMoved > 3) {
+            e.preventDefault();
+            setPositionX();
+        }
     }
 
-    // Finaliza o drag e faz snap
-    function dragEnd() {
+    // Finaliza o drag - TOUCH
+    function touchEnd(e) {
         if (!isDragging) return;
         if (window.innerWidth >= 768) return;
         
         isDragging = false;
-        cancelAnimationFrame(animationId);
+        testimonialsCarousel.classList.remove('dragging');
         
         const cardWidth = getCardWidth();
         const cardWidthWithGap = cardWidth + gap;
         
-        // Calcula qual card deve aparecer baseado na posição atual
-        // Usa a posição absoluta para determinar o índice
+        // Calcula movimento
         const moved = currentTranslate - prevTranslate;
         const threshold = cardWidth * 0.25; // 25% do card para mudar
         
-        // Determina a direção do movimento
+        // Determina próximo card
         if (Math.abs(moved) > threshold) {
             if (moved > 0 && currentIndex > 0) {
-                // Arrastou para a direita (mostra card anterior)
                 currentIndex--;
             } else if (moved < 0 && currentIndex < cards.length - 1) {
-                // Arrastou para a esquerda (mostra próximo card)
                 currentIndex++;
             }
         }
         
-        // Garante que o índice está dentro dos limites
+        // Garante limites
         currentIndex = Math.max(0, Math.min(currentIndex, cards.length - 1));
         
-        // Calcula a posição final com snap
+        // Calcula posição final com snap
         currentTranslate = -currentIndex * cardWidthWithGap;
         
-        // Aplica transição suave para o snap
+        // Aplica transição suave
         testimonialsCarousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         setPositionX();
         
-        // Remove a classe dragging após a transição
-        setTimeout(() => {
-            testimonialsCarousel.classList.remove('dragging');
-        }, 300);
+        // Limpa variáveis
+        touchStartX = 0;
+        touchCurrentX = 0;
     }
 
-    // Inicializa apenas no mobile
-    function initCarousel() {
-        if (window.innerWidth < 768) {
-            // Event listeners (só adiciona uma vez)
-            if (!testimonialsCarousel.hasAttribute('data-initialized')) {
-                testimonialsCarousel.addEventListener('mousedown', dragStart);
-                testimonialsCarousel.addEventListener('touchstart', dragStart, { passive: false });
-                testimonialsCarousel.addEventListener('mouseup', dragEnd);
-                testimonialsCarousel.addEventListener('touchend', dragEnd);
-                testimonialsCarousel.addEventListener('mouseleave', dragEnd);
-                testimonialsCarousel.addEventListener('mousemove', drag);
-                testimonialsCarousel.addEventListener('touchmove', drag, { passive: false });
-                
-                // Previne seleção de texto durante drag
-                testimonialsCarousel.addEventListener('selectstart', (e) => e.preventDefault());
-                testimonialsCarousel.addEventListener('dragstart', (e) => e.preventDefault());
-                
-                testimonialsCarousel.setAttribute('data-initialized', 'true');
+    // Inicia o drag - MOUSE (para testes no desktop com dev tools)
+    function mouseStart(e) {
+        if (window.innerWidth >= 768) return;
+        
+        startPos = e.pageX;
+        prevTranslate = currentTranslate;
+        isDragging = true;
+        
+        testimonialsCarousel.classList.add('dragging');
+        testimonialsCarousel.style.transition = 'none';
+        
+        e.preventDefault();
+    }
+
+    // Durante o drag - MOUSE
+    function mouseMove(e) {
+        if (!isDragging) return;
+        if (window.innerWidth >= 768) return;
+        
+        const currentPosition = e.pageX;
+        const moved = currentPosition - startPos;
+        currentTranslate = prevTranslate + moved;
+        
+        setPositionX();
+    }
+
+    // Finaliza o drag - MOUSE
+    function mouseEnd() {
+        if (!isDragging) return;
+        if (window.innerWidth >= 768) return;
+        
+        isDragging = false;
+        testimonialsCarousel.classList.remove('dragging');
+        
+        const cardWidth = getCardWidth();
+        const cardWidthWithGap = cardWidth + gap;
+        
+        const moved = currentTranslate - prevTranslate;
+        const threshold = cardWidth * 0.25;
+        
+        if (Math.abs(moved) > threshold) {
+            if (moved > 0 && currentIndex > 0) {
+                currentIndex--;
+            } else if (moved < 0 && currentIndex < cards.length - 1) {
+                currentIndex++;
             }
+        }
+        
+        currentIndex = Math.max(0, Math.min(currentIndex, cards.length - 1));
+        currentTranslate = -currentIndex * cardWidthWithGap;
+        
+        testimonialsCarousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        setPositionX();
+    }
+
+    // Inicializa carousel
+    function initCarousel() {
+        // Verifica se já foi inicializado
+        if (testimonialsCarousel.hasAttribute('data-carousel-initialized')) {
+            return;
+        }
+        
+        if (window.innerWidth < 768 && cards.length > 0) {
+            // Touch events (prioridade para mobile) - usando capture para garantir que seja capturado
+            testimonialsCarousel.addEventListener('touchstart', touchStart, { passive: false, capture: false });
+            testimonialsCarousel.addEventListener('touchmove', touchMove, { passive: false, capture: false });
+            testimonialsCarousel.addEventListener('touchend', touchEnd, { passive: false, capture: false });
+            testimonialsCarousel.addEventListener('touchcancel', touchEnd, { passive: false, capture: false });
             
-            // Inicializa posição
-            resetPosition();
+            // Mouse events (para testes em desktop com dev tools)
+            testimonialsCarousel.addEventListener('mousedown', mouseStart, { passive: false });
+            testimonialsCarousel.addEventListener('mousemove', mouseMove, { passive: false });
+            testimonialsCarousel.addEventListener('mouseup', mouseEnd, { passive: false });
+            testimonialsCarousel.addEventListener('mouseleave', mouseEnd, { passive: false });
+            
+            // Previne seleção e drag padrão
+            testimonialsCarousel.addEventListener('selectstart', (e) => {
+                if (isDragging) e.preventDefault();
+            }, { passive: false });
+            testimonialsCarousel.addEventListener('dragstart', (e) => {
+                if (isDragging) e.preventDefault();
+            }, { passive: false });
+            
+            testimonialsCarousel.setAttribute('data-carousel-initialized', 'true');
+            
+            // Inicializa posição após um pequeno delay para garantir que os estilos foram aplicados
+            setTimeout(() => {
+                resetPosition();
+            }, 100);
         } else {
-            // Remove event listeners e reseta no desktop
             resetPosition();
         }
     }
     
-    // Aguarda o DOM estar pronto antes de inicializar
+    // Inicializa após o DOM estar pronto
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(initCarousel, 100); // Pequeno delay para garantir que os estilos foram aplicados
+            setTimeout(initCarousel, 150);
         });
     } else {
-        setTimeout(initCarousel, 100);
+        setTimeout(initCarousel, 150);
     }
     
-    // Atualiza quando a janela redimensiona
+    // Atualiza no resize
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
+            initCarousel();
             if (window.innerWidth < 768) {
                 const cardWidth = getCardWidth();
                 const cardWidthWithGap = cardWidth + gap;
                 currentTranslate = -currentIndex * cardWidthWithGap;
                 setPositionX();
-            } else {
-                resetPosition();
             }
         }, 250);
     });
-}
+});
