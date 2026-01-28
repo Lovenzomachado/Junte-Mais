@@ -4,6 +4,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-family: "Mona Sans", sans-serif !important;
 }
+
 /* Scrollbar Hiding */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -12,35 +13,42 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-/* Grain Overlay (Simulated with SVG base64 noise or CSS gradient noise) */
+
+/* Grain Overlay */
 .grain-overlay {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
 }
+
 /* Animations */
 @keyframes spin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
 @keyframes spin-linear {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
 .animate-spin-slow {
     animation: spin-linear 10s linear infinite;
 }
+
 /* Marquee Animation */
 @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+
 .marquee-content {
     animation: marquee 20s linear infinite;
 }
+
 /* Text Stroke */
 .text-stroke {
-    -webkit-text-stroke: 1px 
-#F2F2F2;
+    -webkit-text-stroke: 1px #F2F2F2;
 }
+
 /* Reveal Animations Classes */
 .reveal-left {
     transform: translateX(-100px);
@@ -51,6 +59,7 @@ body {
     transform: translateX(0);
     opacity: 1;
 }
+
 .reveal-right {
     transform: translateX(100px);
     opacity: 0;
@@ -60,6 +69,7 @@ body {
     transform: translateX(0);
     opacity: 1;
 }
+
 .reveal-scale {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
@@ -69,6 +79,7 @@ body {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
 }
+
 /* Scroll Reveal General */
 .scroll-reveal {
     opacity: 0;
@@ -79,9 +90,11 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
 /* Delay Utilities */
 .delay-100 { transition-delay: 0.1s; }
 .delay-200 { transition-delay: 0.2s; }
+
 /* Methodology underline expansion */
 .animate-expand {
     width: 0%;
@@ -90,10 +103,12 @@ body {
 .animate-expand.visible {
     width: 100%;
 }
+
 /* Cursor Area */
 .cursor-none-area {
     cursor: none;
 }
+
 @media (max-width: 768px) {
     .cursor-none-area {
         cursor: auto;
@@ -103,7 +118,11 @@ body {
     }
 }
 
-/* Testimonials Desktop - Grid de 3 cards */
+/* ============================================================
+   TESTIMONIALS CAROUSEL - iPhone/Safari FIXES
+   ============================================================ */
+
+/* Desktop - Grid de 3 cards */
 @media (min-width: 768px) {
     .testimonial-card {
         transition: transform 0.3s ease, border-color 0.3s ease;
@@ -114,29 +133,76 @@ body {
     }
 }
 
-/* Testimonials Mobile - Carousel com snap */
+/* Mobile - Carousel otimizado para iPhone */
 @media (max-width: 767px) {
     /* Container pai do carousel */
     #testimonials-carousel {
-        cursor: grab;
+        /* CRÍTICO: touch-action permite swipe horizontal mas bloqueia scroll vertical */
+        touch-action: pan-x;
+        
+        /* CRÍTICO: -webkit-overflow-scrolling para scroll suave no Safari */
+        -webkit-overflow-scrolling: touch;
+        
+        /* Otimizações de performance para Safari */
+        will-change: transform;
+        transform: translateZ(0);
+        
+        /* Previne seleção de texto durante drag */
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
-        touch-action: pan-x;
-        -webkit-touch-callout: none;
+        
+        /* Remove highlight azul ao tocar no iOS */
         -webkit-tap-highlight-color: transparent;
-        will-change: transform;
-        -webkit-overflow-scrolling: touch;
+        
+        /* Remove callout (popup de copiar/colar) no iOS */
+        -webkit-touch-callout: none;
+        
+        cursor: grab;
         position: relative;
     }
+    
+    /* Estado durante drag */
     #testimonials-carousel.dragging {
         cursor: grabbing;
+        /* IMPORTANTE: Durante drag, bloqueia completamente scroll */
         touch-action: none;
     }
+    
+    /* Cards dentro do carousel */
     #testimonials-carousel .testimonial-card {
         flex-shrink: 0;
+        
+        /* Permite interação com elementos dentro do card */
         pointer-events: auto;
+        
+        /* Otimização de rendering */
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        
+        /* Previne seleção */
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    /* Previne problemas de bounce no iOS */
+    #testimonials-carousel * {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* Fix adicional para Safari iOS: previne zoom ao dar double-tap */
+@media (max-width: 767px) {
+    #testimonials-carousel,
+    #testimonials-carousel * {
         touch-action: pan-x;
+    }
+    
+    /* Garante que links/botões dentro dos cards ainda funcionem */
+    #testimonials-carousel a,
+    #testimonials-carousel button {
+        touch-action: manipulation;
     }
 }
