@@ -23,64 +23,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 768;
 
     // Configura estado inicial baseado no dispositivo
-if (isMobile) {
-    // No mobile, começa com a primeira imagem em opacidade baixa
-    if(bgStrategy) {
-        bgStrategy.style.opacity = '0.3';
-        bgStrategy.style.display = 'block';
-    }
-    if(bgCreativity) {
-        bgCreativity.style.opacity = '0';
-        bgCreativity.style.display = 'block';
-    }
-
-    // Remove a cor de fundo inicial
-    heroSection.style.backgroundColor = '#050505';
-
-    // Alterna entre as imagens a cada 10 segundos com fade
-    let currentImage = 'strategy';
-    setInterval(() => {
-        if (currentImage === 'strategy') {
-            // Muda para criatividade
-            if(bgStrategy) {
-                bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
-                bgStrategy.style.opacity = '0';
-            }
-            if(bgCreativity) {
-                bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
-                bgCreativity.style.opacity = '0.3';
-            }
-            currentImage = 'creativity';
-        } else {
-            // Muda para estratégia
-            if(bgCreativity) {
-                bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
-                bgCreativity.style.opacity = '0';
-            }
-            if(bgStrategy) {
-                bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
-                bgStrategy.style.opacity = '0.3';
-            }
-            currentImage = 'strategy';
+    if (isMobile) {
+        // No mobile, começa com a primeira imagem em opacidade baixa
+        if(bgStrategy) {
+            bgStrategy.style.opacity = '0.3';
+            bgStrategy.style.display = 'block';
         }
-    }, 10000);
-} else {
-    // No desktop, começa com imagens escondidas
-    if(bgStrategy) bgStrategy.style.opacity = '0';
-    if(bgCreativity) bgCreativity.style.opacity = '0';
-}
+        if(bgCreativity) {
+            bgCreativity.style.opacity = '0';
+            bgCreativity.style.display = 'block';
+        }
 
-const resetHero = () => {
-    if (isMobile) return; // No mobile, mantém as imagens visíveis
-    
-    heroSection.style.transition = 'background-color 0.5s ease';
-    heroSection.style.backgroundColor = '#050505'; // Volta para preto
-    strategyText.style.color = '#F2F2F2';
-    creativityText.style.color = '#F2F2F2';
-    heroTargets.forEach(target => target.style.color = '#F2F2F2');
-    if(bgStrategy) bgStrategy.style.opacity = '0';
-    if(bgCreativity) bgCreativity.style.opacity = '0';
-};
+        // Remove a cor de fundo inicial
+        heroSection.style.backgroundColor = '#050505';
+
+        // Alterna entre as imagens a cada 10 segundos com fade
+        let currentImage = 'strategy';
+        setInterval(() => {
+            if (currentImage === 'strategy') {
+                // Muda para criatividade
+                if(bgStrategy) {
+                    bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
+                    bgStrategy.style.opacity = '0';
+                }
+                if(bgCreativity) {
+                    bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
+                    bgCreativity.style.opacity = '0.3';
+                }
+                currentImage = 'creativity';
+            } else {
+                // Muda para estratégia
+                if(bgCreativity) {
+                    bgCreativity.style.transition = 'opacity 1.5s ease-in-out';
+                    bgCreativity.style.opacity = '0';
+                }
+                if(bgStrategy) {
+                    bgStrategy.style.transition = 'opacity 1.5s ease-in-out';
+                    bgStrategy.style.opacity = '0.3';
+                }
+                currentImage = 'strategy';
+            }
+        }, 10000);
+    } else {
+        // No desktop, começa com imagens escondidas
+        if(bgStrategy) bgStrategy.style.opacity = '0';
+        if(bgCreativity) bgCreativity.style.opacity = '0';
+    }
+
+    const resetHero = () => {
+        if (isMobile) return; // No mobile, mantém as imagens visíveis
+        
+        heroSection.style.transition = 'background-color 0.5s ease';
+        heroSection.style.backgroundColor = '#050505'; // Volta para preto
+        strategyText.style.color = '#F2F2F2';
+        creativityText.style.color = '#F2F2F2';
+        heroTargets.forEach(target => target.style.color = '#F2F2F2');
+        if(bgStrategy) bgStrategy.style.opacity = '0';
+        if(bgCreativity) bgCreativity.style.opacity = '0';
+    };
 
     // Desktop: comportamento de hover
     if (!isMobile) {
@@ -268,243 +268,219 @@ const resetHero = () => {
     });
 });
 
-// --- TESTIMONIALS CAROUSEL MOBILE ---
+// ============================================================
+// TESTIMONIALS CAROUSEL - FIXED FOR iPhone
+// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
     const testimonialsCarousel = document.getElementById('testimonials-carousel');
     
     if (!testimonialsCarousel) return;
     
+    // Estado do carousel
     let isDragging = false;
-    let startPos = 0;
+    let startX = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
     let currentIndex = 0;
-    let touchStartX = 0;
-    let touchCurrentX = 0;
+    let animationID = null;
     
     const cards = testimonialsCarousel.querySelectorAll('.testimonial-card');
     const gap = 24; // gap-6 = 24px
     
-    // Função para calcular o tamanho do card
+    // ============================================================
+    // FUNÇÕES AUXILIARES
+    // ============================================================
+    
     function getCardWidth() {
         const container = testimonialsCarousel.parentElement;
         if (!container) return window.innerWidth - 32;
         return container.offsetWidth;
     }
     
-    // Função para definir a posição
-    function setPositionX() {
+    function setPositionByIndex() {
+        const cardWidth = getCardWidth();
+        const cardWidthWithGap = cardWidth + gap;
+        currentTranslate = -currentIndex * cardWidthWithGap;
+        setSliderPosition();
+    }
+    
+    function setSliderPosition() {
         testimonialsCarousel.style.transform = `translateX(${currentTranslate}px)`;
     }
     
-    // Função para resetar posição
-    function resetPosition() {
-        currentIndex = 0;
-        currentTranslate = 0;
-        prevTranslate = 0;
-        setPositionX();
+    function animation() {
+        setSliderPosition();
+        if (isDragging) {
+            requestAnimationFrame(animation);
+        }
     }
     
-    // Função para atualizar posição durante drag
-    function updatePosition() {
-        setPositionX();
-        if (isDragging) {
-            requestAnimationFrame(updatePosition);
-        }
-    }
-
-    // Inicia o drag - TOUCH
-    function touchStart(e) {
-        if (window.innerWidth >= 768) return;
-        if (!e.touches || !e.touches[0]) return;
+    // ============================================================
+    // TOUCH EVENT HANDLERS (iPhone compatibility)
+    // ============================================================
+    
+    function touchStart(event) {
+        if (window.innerWidth >= 768) return; // Desktop não usa carousel
         
-        const touch = e.touches[0];
-        touchStartX = touch.clientX;
-        startPos = touchStartX;
-        prevTranslate = currentTranslate;
+        // CRÍTICO: Evita o bounce scroll do Safari
+        event.preventDefault();
+        
         isDragging = true;
+        startX = event.touches[0].clientX;
         
-        testimonialsCarousel.classList.add('dragging');
+        // Salva posição atual
+        prevTranslate = currentTranslate;
+        
+        // Remove transição para drag suave
         testimonialsCarousel.style.transition = 'none';
-        testimonialsCarousel.style.willChange = 'transform';
+        testimonialsCarousel.classList.add('dragging');
         
-        // Previne scroll da página durante o drag
-        e.preventDefault();
+        // Inicia animação
+        animationID = requestAnimationFrame(animation);
     }
-
-    // Durante o drag - TOUCH
-    function touchMove(e) {
-        if (!isDragging) return;
-        if (window.innerWidth >= 768) return;
-        if (!e.touches || !e.touches[0]) return;
+    
+    function touchMove(event) {
+        if (!isDragging || window.innerWidth >= 768) return;
         
-        const touch = e.touches[0];
-        touchCurrentX = touch.clientX;
-        const moved = touchCurrentX - touchStartX;
-        currentTranslate = prevTranslate + moved;
+        // CRÍTICO para iPhone: preventDefault com passive: false
+        event.preventDefault();
         
-        // Previne scroll da página se estiver arrastando horizontalmente
-        const absMoved = Math.abs(moved);
-        if (absMoved > 3) {
-            e.preventDefault();
-            setPositionX();
-        }
+        const currentX = event.touches[0].clientX;
+        const diff = currentX - startX;
+        
+        currentTranslate = prevTranslate + diff;
     }
-
-    // Finaliza o drag - TOUCH
-    function touchEnd(e) {
-        if (!isDragging) return;
-        if (window.innerWidth >= 768) return;
+    
+    function touchEnd(event) {
+        if (!isDragging || window.innerWidth >= 768) return;
         
         isDragging = false;
+        cancelAnimationFrame(animationID);
+        
         testimonialsCarousel.classList.remove('dragging');
         
         const cardWidth = getCardWidth();
-        const cardWidthWithGap = cardWidth + gap;
+        const movedBy = currentTranslate - prevTranslate;
         
-        // Calcula movimento
-        const moved = currentTranslate - prevTranslate;
-        const threshold = cardWidth * 0.25; // 25% do card para mudar
-        
-        // Determina próximo card
-        if (Math.abs(moved) > threshold) {
-            if (moved > 0 && currentIndex > 0) {
-                currentIndex--;
-            } else if (moved < 0 && currentIndex < cards.length - 1) {
-                currentIndex++;
-            }
-        }
-        
-        // Garante limites
-        currentIndex = Math.max(0, Math.min(currentIndex, cards.length - 1));
-        
-        // Calcula posição final com snap
-        currentTranslate = -currentIndex * cardWidthWithGap;
-        
-        // Aplica transição suave
-        testimonialsCarousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        setPositionX();
-        
-        // Limpa variáveis
-        touchStartX = 0;
-        touchCurrentX = 0;
-    }
-
-    // Inicia o drag - MOUSE (para testes no desktop com dev tools)
-    function mouseStart(e) {
-        if (window.innerWidth >= 768) return;
-        
-        startPos = e.pageX;
-        prevTranslate = currentTranslate;
-        isDragging = true;
-        
-        testimonialsCarousel.classList.add('dragging');
-        testimonialsCarousel.style.transition = 'none';
-        
-        e.preventDefault();
-    }
-
-    // Durante o drag - MOUSE
-    function mouseMove(e) {
-        if (!isDragging) return;
-        if (window.innerWidth >= 768) return;
-        
-        const currentPosition = e.pageX;
-        const moved = currentPosition - startPos;
-        currentTranslate = prevTranslate + moved;
-        
-        setPositionX();
-    }
-
-    // Finaliza o drag - MOUSE
-    function mouseEnd() {
-        if (!isDragging) return;
-        if (window.innerWidth >= 768) return;
-        
-        isDragging = false;
-        testimonialsCarousel.classList.remove('dragging');
-        
-        const cardWidth = getCardWidth();
-        const cardWidthWithGap = cardWidth + gap;
-        
-        const moved = currentTranslate - prevTranslate;
+        // Threshold: 25% do card para considerar swipe
         const threshold = cardWidth * 0.25;
         
-        if (Math.abs(moved) > threshold) {
-            if (moved > 0 && currentIndex > 0) {
-                currentIndex--;
-            } else if (moved < 0 && currentIndex < cards.length - 1) {
-                currentIndex++;
-            }
+        // Determina direção do swipe
+        if (movedBy < -threshold && currentIndex < cards.length - 1) {
+            currentIndex += 1;
+        } else if (movedBy > threshold && currentIndex > 0) {
+            currentIndex -= 1;
         }
         
-        currentIndex = Math.max(0, Math.min(currentIndex, cards.length - 1));
-        currentTranslate = -currentIndex * cardWidthWithGap;
+        // Snap para posição correta
+        setPositionByIndex();
         
+        // Adiciona transição suave
         testimonialsCarousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        setPositionX();
     }
-
-    // Inicializa carousel
-    function initCarousel() {
-        // Verifica se já foi inicializado
-        if (testimonialsCarousel.hasAttribute('data-carousel-initialized')) {
-            return;
+    
+    // ============================================================
+    // MOUSE EVENTS (para testes no desktop)
+    // ============================================================
+    
+    function mouseDown(event) {
+        if (window.innerWidth >= 768) return;
+        
+        event.preventDefault();
+        
+        isDragging = true;
+        startX = event.pageX;
+        prevTranslate = currentTranslate;
+        
+        testimonialsCarousel.style.transition = 'none';
+        testimonialsCarousel.classList.add('dragging');
+        
+        animationID = requestAnimationFrame(animation);
+    }
+    
+    function mouseMove(event) {
+        if (!isDragging || window.innerWidth >= 768) return;
+        
+        event.preventDefault();
+        
+        const currentX = event.pageX;
+        const diff = currentX - startX;
+        
+        currentTranslate = prevTranslate + diff;
+    }
+    
+    function mouseUp() {
+        if (!isDragging || window.innerWidth >= 768) return;
+        
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        
+        testimonialsCarousel.classList.remove('dragging');
+        
+        const cardWidth = getCardWidth();
+        const movedBy = currentTranslate - prevTranslate;
+        const threshold = cardWidth * 0.25;
+        
+        if (movedBy < -threshold && currentIndex < cards.length - 1) {
+            currentIndex += 1;
+        } else if (movedBy > threshold && currentIndex > 0) {
+            currentIndex -= 1;
         }
         
+        setPositionByIndex();
+        testimonialsCarousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    }
+    
+    // ============================================================
+    // INICIALIZAÇÃO DO CAROUSEL
+    // ============================================================
+    
+    function initCarousel() {
         if (window.innerWidth < 768 && cards.length > 0) {
-            // Touch events (prioridade para mobile) - usando capture para garantir que seja capturado
-            testimonialsCarousel.addEventListener('touchstart', touchStart, { passive: false, capture: false });
-            testimonialsCarousel.addEventListener('touchmove', touchMove, { passive: false, capture: false });
-            testimonialsCarousel.addEventListener('touchend', touchEnd, { passive: false, capture: false });
-            testimonialsCarousel.addEventListener('touchcancel', touchEnd, { passive: false, capture: false });
+            // Otimizações Safari
+            testimonialsCarousel.style.willChange = 'transform';
+            testimonialsCarousel.style.transform = 'translateZ(0)';
             
-            // Mouse events (para testes em desktop com dev tools)
-            testimonialsCarousel.addEventListener('mousedown', mouseStart, { passive: false });
-            testimonialsCarousel.addEventListener('mousemove', mouseMove, { passive: false });
-            testimonialsCarousel.addEventListener('mouseup', mouseEnd, { passive: false });
-            testimonialsCarousel.addEventListener('mouseleave', mouseEnd, { passive: false });
+            // CRÍTICO: passive: false permite preventDefault no iPhone
+            testimonialsCarousel.addEventListener('touchstart', touchStart, { passive: false });
+            testimonialsCarousel.addEventListener('touchmove', touchMove, { passive: false });
+            testimonialsCarousel.addEventListener('touchend', touchEnd, { passive: false });
+            testimonialsCarousel.addEventListener('touchcancel', touchEnd, { passive: false });
             
-            // Previne seleção e drag padrão
-            testimonialsCarousel.addEventListener('selectstart', (e) => {
-                if (isDragging) e.preventDefault();
-            }, { passive: false });
-            testimonialsCarousel.addEventListener('dragstart', (e) => {
-                if (isDragging) e.preventDefault();
-            }, { passive: false });
+            // Mouse events (fallback para testes)
+            testimonialsCarousel.addEventListener('mousedown', mouseDown);
+            document.addEventListener('mousemove', mouseMove);
+            document.addEventListener('mouseup', mouseUp);
             
-            testimonialsCarousel.setAttribute('data-carousel-initialized', 'true');
+            // Previne comportamentos padrão
+            testimonialsCarousel.addEventListener('dragstart', (e) => e.preventDefault());
+            testimonialsCarousel.addEventListener('selectstart', (e) => e.preventDefault());
             
-            // Inicializa posição após um pequeno delay para garantir que os estilos foram aplicados
-            setTimeout(() => {
-                resetPosition();
-            }, 100);
-        } else {
-            resetPosition();
+            // Posição inicial
+            setPositionByIndex();
         }
     }
     
-    // Inicializa após o DOM estar pronto
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(initCarousel, 150);
-        });
-    } else {
-        setTimeout(initCarousel, 150);
-    }
+    // ============================================================
+    // RESIZE HANDLER
+    // ============================================================
     
-    // Atualiza no resize
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            initCarousel();
             if (window.innerWidth < 768) {
-                const cardWidth = getCardWidth();
-                const cardWidthWithGap = cardWidth + gap;
-                currentTranslate = -currentIndex * cardWidthWithGap;
-                setPositionX();
+                setPositionByIndex();
+            } else {
+                // Reset no desktop
+                currentIndex = 0;
+                currentTranslate = 0;
+                prevTranslate = 0;
+                testimonialsCarousel.style.transform = 'translateX(0)';
             }
         }, 250);
     });
+    
+    // Inicializa quando DOM estiver pronto
+    setTimeout(initCarousel, 100);
 });
