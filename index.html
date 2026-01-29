@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -144,6 +143,29 @@
             #custom-cursor {
                 display: none !important;
             }
+        }
+        @keyframes marquee-testimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .testimonials-marquee {
+            animation: marquee-testimonials 20s linear infinite;
+            cursor: grab;
+        }
+        @media (min-width: 768px) {
+            .testimonials-marquee {
+                animation: marquee-testimonials 30s linear infinite;
+            }
+        }
+        .testimonials-marquee:hover {
+            animation-play-state: paused;
+        }
+        .testimonials-marquee:active {
+            cursor: grabbing;
+        }
+        .testimonials-marquee.dragging {
+            animation-play-state: paused;
+            cursor: grabbing;
         }
     </style>
 </head>
@@ -343,9 +365,34 @@
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-6xl mx-auto">
             
+            <!-- 1. Gestão de Redes - Fundo Lilás #E0C3FC -->
             <a href="https://w.app/juntemais" 
                target="_blank" rel="noopener noreferrer" 
                class="group relative bg-[#E0C3FC] rounded-2xl p-6 text-[#050505] flex flex-col justify-center transition-all duration-300 hover:scale-[1.01] cursor-trigger min-h-[180px]" 
+               data-cursor="Social Media">
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2">Gestão de Redes</h3>
+                <p class="text-lg font-medium opacity-90">Estratégia que gera autoridade, não likes.</p>
+            </a>
+
+            <!-- 2. Audiovisual - Fundo Preto -->
+            <a href="https://w.app/juntemais" 
+               target="_blank" rel="noopener noreferrer" 
+               class="group relative bg-[#0a0a0a] border border-[#333] rounded-2xl p-6 flex flex-col justify-center transition-all duration-300 hover:border-[#F2F2F2] hover:scale-[1.01] cursor-trigger min-h-[180px]" 
+               data-cursor="Audiovisual">
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
+                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-[#F2F2F2]">Audiovisual</h3>
+                <p class="text-lg text-[#888] group-hover:text-[#F2F2F2] transition-colors">Fotos e vídeos que constroem narrativa.</p>
+            </a>
+
+            <!-- 3. Identidade Visual - Fundo Verde #CCFF00 -->
+            <a href="https://w.app/juntemais" 
+               target="_blank" rel="noopener noreferrer" 
+               class="group relative bg-[#CCFF00] rounded-2xl p-6 text-[#050505] flex flex-col justify-center transition-all duration-300 hover:scale-[1.01] cursor-trigger min-h-[180px]" 
                data-cursor="Design">
                 <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                     <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
@@ -354,43 +401,16 @@
                 <p class="text-lg font-medium opacity-90">Identidade que traduz essência, não só estética.</p>
             </a>
 
+            <!-- 4. Tráfego Pago - Fundo Off White #FFFBF3 -->
             <a href="https://w.app/juntemais" 
                target="_blank" rel="noopener noreferrer" 
-               class="group relative bg-[#CCFF00] rounded-2xl p-6 text-[#050505] flex flex-col justify-center transition-all duration-300 hover:scale-[1.01] cursor-trigger min-h-[180px]" 
-               data-cursor="Audiovisual">
+               class="group relative bg-[#FFFBF3] rounded-2xl p-6 text-[#050505] flex flex-col justify-center transition-all duration-300 hover:scale-[1.01] cursor-trigger min-h-[180px]" 
+               data-cursor="Ads">
                 <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                     <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-2xl md:text-3xl font-bold mb-2">Audiovisual</h3>
-                <p class="text-lg font-medium opacity-90">Fotos e vídeos que constroem narrativa.</p>
-            </a>
-
-            <a href="https://w.app/juntemais" 
-               target="_blank" rel="noopener noreferrer" 
-               class="group relative border border-[#333] bg-[#0a0a0a] rounded-2xl p-6 flex flex-col justify-center transition-all duration-300 hover:border-[#F2F2F2] hover:scale-[1.01] cursor-trigger min-h-[180px]" 
-               data-cursor="Social Media">
-                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#F2F2F2]">
-                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-bold mb-2 text-[#F2F2F2]">Gestão de Redes</h3>
-                <p class="text-lg text-[#888] group-hover:text-[#F2F2F2] transition-colors">Estratégia que gera autoridade, não likes.</p>
-            </a>
-
-            <a href="https://w.app/juntemais" 
-               target="_blank" rel="noopener noreferrer" 
-               class="group relative rounded-2xl overflow-hidden cursor-trigger flex flex-col justify-center p-6 min-h-[180px] transition-all duration-300 hover:scale-[1.01]" 
-               data-cursor="Ads">
-                <img src="https://images.unsplash.com/photo-1634326080825-985cfc816db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" 
-                     alt="Tráfego Pago" 
-                     class="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-500">
-                <div class="absolute inset-0 bg-black/60"></div>
-                <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
-                </div>
-                <div class="relative z-10 text-white">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-2">Tráfego Pago</h3>
-                    <p class="text-lg text-[#ddd]">Investimento guiado por estratégia.</p>
-                </div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2">Tráfego Pago</h3>
+                <p class="text-lg font-medium opacity-90">Investimento guiado por estratégia.</p>
             </a>
 
         </div>
@@ -406,79 +426,80 @@
                     <path d="M0,600 L0,200 C200,300 400,100 720,250 C1000,400 1200,150 1440,300 L1440,600 Z" fill="currentColor" />
                 </svg>
             </div>
-            <div class="relative z-20 container mx-auto px-4 text-center mt-0 md:mt-[-10vh]">
-                <h2 class="text-6xl md:text-8xl font-bold font-sans text-[#F2F2F2] mb-12 scroll-reveal">
-    Marca forte <br />pensa <span class="italic text-[#E0C3FC] underline decoration-[#E0C3FC] decoration-4 underline-offset-8">junto</span>.
+            <div class="relative z-20 container mx-auto px-6 text-center mt-0 md:mt-[-10vh]">
+                <h2 class="text-5xl md:text-8xl font-bold font-sans text-[#F2F2F2] mb-12 scroll-reveal leading-tight">
+    Marca forte <br class="md:hidden" /><br class="hidden md:block" />pensa <span class="italic text-[#E0C3FC] underline decoration-[#E0C3FC] decoration-4 underline-offset-8">junto</span>.
 </h2>
-                <!-- Desktop: Grid com 3 cards -->
-                <div class="hidden md:grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
-                        <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                            <div>
-                                <p class="text-white font-bold text-sm">Ana Silva</p>
-                                <p class="text-gray-400 text-xs">CMO @ TechStart</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
-                        <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                            <div>
-                                <p class="text-white font-bold text-sm">Carlos Mendes</p>
-                                <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
-                        <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                            <div>
-                                <p class="text-white font-bold text-sm">Marina Costa</p>
-                                <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
-                            </div>
-                        </div>
+                <div class="overflow-hidden w-full">
+    <div class="testimonials-marquee flex gap-6">
+        <!-- Grupo 1 -->
+        <div class="flex gap-6 shrink-0">
+            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
+                <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Ana Silva</p>
+                        <p class="text-gray-400 text-xs">CMO @ TechStart</p>
                     </div>
                 </div>
-
-                <!-- Mobile: Carousel com swipe -->
-                <div class="md:hidden overflow-hidden w-full">
-                    <div class="testimonials-carousel flex gap-6 transition-transform duration-300 ease-out" id="testimonials-carousel">
-                        <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-full shrink-0 snap-center">
-                            <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                                <div>
-                                    <p class="text-white font-bold text-sm">Ana Silva</p>
-                                    <p class="text-gray-400 text-xs">CMO @ TechStart</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-full shrink-0 snap-center">
-                            <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                                <div>
-                                    <p class="text-white font-bold text-sm">Carlos Mendes</p>
-                                    <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-full shrink-0 snap-center">
-                            <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                                <div>
-                                    <p class="text-white font-bold text-sm">Marina Costa</p>
-                                    <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
+                <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Carlos Mendes</p>
+                        <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
                     </div>
                 </div>
+            </div>
+            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
+                <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Marina Costa</p>
+                        <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Grupo 2 (duplicado) -->
+        <div class="flex gap-6 shrink-0">
+            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
+                <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Ana Silva</p>
+                        <p class="text-gray-400 text-xs">CMO @ TechStart</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
+                <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Carlos Mendes</p>
+                        <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
+                <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-bold text-sm">Marina Costa</p>
+                        <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </section>
