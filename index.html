@@ -144,28 +144,45 @@
                 display: none !important;
             }
         }
-        @keyframes marquee-testimonials {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        
+        /* Testimonials carousel - mobile scroll */
+        .testimonials-scroll-container {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+            list-style: none;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
-        .testimonials-marquee {
-            animation: marquee-testimonials 20s linear infinite;
-            cursor: grab;
+        .testimonials-scroll-container::-webkit-scrollbar {
+            display: none;
         }
-        @media (min-width: 768px) {
-            .testimonials-marquee {
-                animation: marquee-testimonials 30s linear infinite;
+        .testimonial-card {
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+        
+        /* Mobile: cards ocupam 90% da largura */
+        @media (max-width: 767px) {
+            .testimonial-card {
+                width: 90%;
             }
         }
-        .testimonials-marquee:hover {
-            animation-play-state: paused;
-        }
-        .testimonials-marquee:active {
-            cursor: grabbing;
-        }
-        .testimonials-marquee.dragging {
-            animation-play-state: paused;
-            cursor: grabbing;
+        
+        /* Desktop: grid layout normal */
+        @media (min-width: 768px) {
+            .testimonials-scroll-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                overflow-x: visible;
+                scroll-snap-type: none;
+                padding: 0;
+            }
+            .testimonial-card {
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -338,20 +355,29 @@
             </div>
         </div>
         
-        <!-- Slider -->
-        <div class="overflow-hidden" id="methodology-slider-container">
-            <div class="flex gap-8 w-[150%] transition-transform duration-100 ease-out" id="methodology-slider">
-                <div class="w-full aspect-[4/3] bg-black text-[#F2F2F2] p-8 rounded-2xl flex items-center justify-center">
-                    <p class="text-3xl md:text-4xl font-bold text-center">"Não somos mais uma agência,<br/>somos a última."</p>
+        <!-- Content Grid -->
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="scroll-reveal">
+                <div class="bg-black text-[#F2F2F2] p-8 md:p-12 rounded-2xl border-2 border-[#CCFF00] relative">
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-[#CCFF00] rounded-full flex items-center justify-center text-black text-2xl font-bold">
+                        "
+                    </div>
+                    <p class="text-3xl md:text-5xl font-bold leading-tight">
+                        Não somos mais uma agência,<br/>
+                        <span class="text-[#CCFF00]">somos a última.</span>
+                    </p>
                 </div>
-                <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                    <img src="https://i.ibb.co/PzVKCf7n/img-2180.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Team" class="w-full h-full object-cover">
+                <div class="mt-8 text-xl leading-relaxed">
+                    <p>
+                        Acreditamos que as melhores ideias nascem da troca. Não entregamos apenas um PDF bonito; construímos sistemas visuais e estratégias que respiram a cultura da sua empresa.
+                    </p>
                 </div>
             </div>
-            <div class="mt-12 max-w-xl text-xl leading-relaxed scroll-reveal">
-                <p>
-                    Acreditamos que as melhores ideias nascem da troca. Não entregamos apenas um PDF bonito; construímos sistemas visuais e estratégias que respiram a cultura da sua empresa.
-                </p>
+            
+            <div class="scroll-reveal delay-200">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden border-2 border-[#333]">
+                    <img src="https://i.ibb.co/PzVKCf7n/img-2180.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Team" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
             </div>
         </div>
     </div>
@@ -417,7 +443,7 @@
     </div>
 </section>
 
-        <section class="relative min-h-screen bg-[#111] overflow-hidden flex flex-col justify-center items-center py-16 md:py-0" id="social-proof">
+        <section class="relative min-h-screen bg-[#111] overflow-hidden flex flex-col justify-center items-center py-16 md:py-[160px]" id="social-proof">
             <div id="rising-sun" class="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 transition-transform duration-100 ease-out translate-y-full opacity-0">
                 <div class="w-[40vw] h-[40vw] bg-[#E0C3FC] rounded-full blur-[20px] md:blur-[60px]"></div>
             </div>
@@ -430,76 +456,39 @@
                 <h2 class="text-5xl md:text-8xl font-bold font-sans text-[#F2F2F2] mb-12 scroll-reveal leading-tight">
     Marca forte <br class="md:hidden" /><br class="hidden md:block" />pensa <span class="italic text-[#E0C3FC] underline decoration-[#E0C3FC] decoration-4 underline-offset-8">junto</span>.
 </h2>
-                <div class="overflow-hidden w-full">
-    <div class="testimonials-marquee flex gap-6">
-        <!-- Grupo 1 -->
-        <div class="flex gap-6 shrink-0">
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Ana Silva</p>
-                        <p class="text-gray-400 text-xs">CMO @ TechStart</p>
+                
+                <!-- Testimonials com scroll nativo -->
+                <div class="testimonials-scroll-container">
+                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
+                        <p class="text-[#ccc] text-lg mb-4">“Vocês estão sempre abertas a entender o que o cliente gosta ou não. Percebo essa escuta ativa, porque a cada nova produção de conteúdo as sugestões e ajustes que faço são atendidos, deixando o resultado cada vez mais com a minha cara.”</p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.ibb.co/5hNbJxF9/image.png" alt="image" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <p class="text-white font-bold text-sm">Giulia Munari</p>
+                                <p class="text-gray-400 text-xs">Nutricionista</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Carlos Mendes</p>
-                        <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
+                        <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                            <div>
+                                <p class="text-white font-bold text-sm">Carlos Mendes</p>
+                                <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Marina Costa</p>
-                        <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+                    <div class="testimonial-card bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left">
+                        <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
+                            <div>
+                                <p class="text-white font-bold text-sm">Marina Costa</p>
+                                <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Grupo 2 (duplicado) -->
-        <div class="flex gap-6 shrink-0">
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"A Junte Mais mudou nossa percepção de valor. Não foi só design, foi posicionamento."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Ana Silva</p>
-                        <p class="text-gray-400 text-xs">CMO @ TechStart</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Profissionalismo e criatividade em cada entrega. Transformaram nossa identidade visual."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Carlos Mendes</p>
-                        <p class="text-gray-400 text-xs">CEO @ InovaLab</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-[#1a1a1a] p-6 rounded-2xl border border-[#333] text-left w-[350px]">
-                <p class="text-[#ccc] text-lg mb-4">"Estratégia com propósito. Nossa presença digital nunca foi tão autêntica."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-600 rounded-full"></div>
-                    <div>
-                        <p class="text-white font-bold text-sm">Marina Costa</p>
-                        <p class="text-gray-400 text-xs">Diretora @ BrandLab</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
                 </div>
             </div>
         </section>
@@ -541,7 +530,6 @@
 </footer>
     </main>
 
-    <!-- Link para o arquivo JS externo -->
     <script src="script.js"></script>
 </body>
 </html>
