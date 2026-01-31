@@ -119,90 +119,53 @@ body {
 }
 
 /* ============================================================
-   TESTIMONIALS CAROUSEL - iPhone/Safari FIXES
+   TESTIMONIALS CAROUSEL - NATIVE SCROLL (Como no exemplo)
    ============================================================ */
 
-/* Desktop - Grid de 3 cards */
-@media (min-width: 768px) {
+/* Container de scroll (similar ao .list do exemplo) */
+.testimonials-scroll-container {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+    list-style: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Esconde scrollbar */
+.testimonials-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cards individuais (similar ao .item do exemplo) */
+.testimonial-card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Mobile: cards ocupam 90% da largura (como no exemplo) */
+@media (max-width: 767px) {
     .testimonial-card {
-        transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .testimonial-card:hover {
-        transform: translateY(-4px);
-        border-color: #555;
+        width: 90%;
     }
 }
 
-/* Mobile - Carousel otimizado para iPhone */
-@media (max-width: 767px) {
-    /* Container pai do carousel */
-    #testimonials-carousel {
-        /* CRÍTICO: touch-action permite swipe horizontal mas bloqueia scroll vertical */
-        touch-action: pan-x;
-        
-        /* CRÍTICO: -webkit-overflow-scrolling para scroll suave no Safari */
-        -webkit-overflow-scrolling: touch;
-        
-        /* Otimizações de performance para Safari */
-        will-change: transform;
-        transform: translateZ(0);
-        
-        /* Previne seleção de texto durante drag */
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        
-        /* Remove highlight azul ao tocar no iOS */
-        -webkit-tap-highlight-color: transparent;
-        
-        /* Remove callout (popup de copiar/colar) no iOS */
-        -webkit-touch-callout: none;
-        
-        cursor: grab;
-        position: relative;
+/* Desktop: grid layout normal (3 colunas) */
+@media (min-width: 768px) {
+    .testimonials-scroll-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding: 0;
     }
     
-    /* Estado durante drag */
-    #testimonials-carousel.dragging {
-        cursor: grabbing;
-        /* IMPORTANTE: Durante drag, bloqueia completamente scroll */
-        touch-action: none;
-    }
-    
-    /* Cards dentro do carousel */
-    #testimonials-carousel .testimonial-card {
-        flex-shrink: 0;
-        
-        /* Permite interação com elementos dentro do card */
-        pointer-events: auto;
-        
-        /* Otimização de rendering */
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        
-        /* Previne seleção */
-        user-select: none;
-        -webkit-user-select: none;
-    }
-    
-    /* Previne problemas de bounce no iOS */
-    #testimonials-carousel * {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-    }
-}
-
-/* Fix adicional para Safari iOS: previne zoom ao dar double-tap */
-@media (max-width: 767px) {
-    #testimonials-carousel,
-    #testimonials-carousel * {
-        touch-action: pan-x;
-    }
-    
-    /* Garante que links/botões dentro dos cards ainda funcionem */
-    #testimonials-carousel a,
-    #testimonials-carousel button {
-        touch-action: manipulation;
+    .testimonial-card {
+        width: auto;
     }
 }
