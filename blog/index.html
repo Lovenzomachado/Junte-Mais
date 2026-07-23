@@ -139,11 +139,11 @@
                 <nav class="flex flex-col gap-6 text-center">
             <a href="../index.html" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
             <div class="mobile-menu-link">
-                <button class="text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors flex items-center gap-2 mx-auto" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180')">
+                <button class="text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors flex items-center gap-2 mx-auto" onclick="event.stopPropagation(); this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180')">
                     Serviços
                     <i data-lucide="chevron-down" class="w-6 h-6 arrow-icon transition-transform duration-200"></i>
                 </button>
-                <div class="hidden flex-col gap-3 mt-4">
+                <div class="hidden flex flex-col gap-3 mt-4">
                     <a href="../gestao-de-redes-sociais.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Gestão de Redes</a>
                     <a href="../trafego-pago.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Tráfego Pago</a>
                     <a href="../producao-audiovisual.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Audiovisual</a>
