@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = window.location.pathname.replace(/\/$/, '');
     const segments = url.split('/').filter(Boolean);
     const isBlog = segments.includes('blog');
-    const currentFile = isBlog ? 'blog/index.html' : (segments.pop() || 'index.html');
+    const currentFile = isBlog ? '/blog/' : (segments.length ? '/' + segments.pop() + '/' : '/');
 
     document.querySelectorAll('header nav a[href], .mobile-menu-link').forEach(link => {
         const href = link.getAttribute('href');
-        if (href && (href === currentFile || (href === 'index.html' && currentFile === 'index.html' && segments.length === 0))) {
+        if (href && href === currentFile) {
             link.style.color = '#CCFF00';
         }
     });

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://juntemais.com.br/sitemap.xml
+Sitemap: https://juntemais.com/sitemap.xml

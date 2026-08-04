@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-<link rel="shortcut icon" href="../favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Junte+" />
-<link rel="manifest" href="../site.webmanifest" />
+<link rel="manifest" href="/site.webmanifest" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O que é gestão de redes sociais? | Blog Junte Mais</title>
-    <meta name="description" content="Entenda o que é gestão de redes sociais, por que sua marca precisa de uma estratégia consistente e como a Junte Mais estrutura esse processo todo mês.">
+    <title>Produção Audiovisual e Fotográfica em Porto Alegre | Junte Mais</title>
+    <meta name="description" content="Produção audiovisual e fotográfica. Conteúdo de qualidade para fortalecer sua presença digital com autenticidade e impacto.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://juntemais.com.br/blog/o-que-e-gestao-de-redes-sociais.html">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="O que é gestão de redes sociais e por que sua marca precisa?">
-    <meta property="og:description" content="Entenda o que é gestão de redes sociais, por que sua marca precisa de uma estratégia consistente e como a Junte Mais estrutura esse processo todo mês.">
-    <meta property="og:url" content="https://juntemais.com.br/blog/o-que-e-gestao-de-redes-sociais.html">
-    <meta property="og:image" content="https://juntemais.com.br/og-image.jpg">
+    <link rel="canonical" href="https://juntemais.com/producao-audiovisual/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Produção Audiovisual e Fotográfica | Junte Mais">
+    <meta property="og:description" content="Produção audiovisual e fotográfica. Conteúdo de qualidade para fortalecer sua presença digital com autenticidade e impacto.">
+    <meta property="og:url" content="https://juntemais.com/producao-audiovisual/">
+    <meta property="og:image" content="https://juntemais.com/og-image.jpg">
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="O que é gestão de redes sociais e por que sua marca precisa?">
-    <meta name="twitter:description" content="Entenda o que é gestão de redes sociais e por que sua marca precisa de uma estratégia consistente.">
-    <meta name="twitter:image" content="https://juntemais.com.br/og-image.jpg">
+    <meta name="twitter:title" content="Produção Audiovisual e Fotográfica | Junte Mais">
+    <meta name="twitter:description" content="Produção audiovisual e fotográfica. Conteúdo de qualidade para fortalecer sua presença digital com autenticidade e impacto.">
+    <meta name="twitter:image" content="https://juntemais.com/og-image.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,6 +75,46 @@
         .animate-spin-slow {
             animation: spin-linear 10s linear infinite;
         }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-content {
+            animation: marquee 20s linear infinite;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px #F2F2F2;
+        }
+        .reveal-left {
+            transform: translateX(-100px);
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+        .reveal-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .reveal-right {
+            transform: translateX(100px);
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+        .reveal-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .reveal-scale {
+            transform: scale(0);
+            opacity: 0;
+            transition: all 1s ease-out 0.2s;
+        }
+        .reveal-scale.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .hero-text {
+            transition: color 0.3s ease;
+        }
         .scroll-reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -86,6 +126,13 @@
         }
         .delay-100 { transition-delay: 0.1s; }
         .delay-200 { transition-delay: 0.2s; }
+        .animate-expand {
+            width: 0%;
+            transition: width 0.8s ease-out;
+        }
+        .animate-expand.visible {
+            width: 100%;
+        }
         .mobile-menu-link {
             opacity: 0;
             transform: translateY(20px);
@@ -99,38 +146,98 @@
         #mobile-menu.active .mobile-menu-link:nth-child(2) { transition-delay: 0.2s; }
         #mobile-menu.active .mobile-menu-link:nth-child(3) { transition-delay: 0.3s; }
         #mobile-menu.active .mobile-menu-link:nth-child(4) { transition-delay: 0.4s; }
+        .cursor-none-area {
+            cursor: none;
+        }
+        @media (max-width: 768px) {
+            .cursor-none-area {
+                cursor: auto;
+            }
+            #custom-cursor {
+                display: none !important;
+            }
+        }
+        
+        /* Testimonials carousel - mobile scroll */
+        .testimonials-scroll-container {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+            list-style: none;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .testimonials-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .testimonial-card {
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+        
+        /* Mobile: cards ocupam 90% da largura */
+        @media (max-width: 767px) {
+            .testimonial-card {
+                width: 90%;
+            }
+        }
+        
+        /* Desktop: grid layout normal */
+        @media (min-width: 768px) {
+            .testimonials-scroll-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                overflow-x: visible;
+                scroll-snap-type: none;
+                padding: 0;
+            }
+            .testimonial-card {
+                width: auto;
+            }
+        }
     </style>
+      <!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vbvj6aiuye");
+</script>
+
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "O que é gestão de redes sociais",
-    "description": "Entenda o que é gestão de redes sociais, por que sua marca precisa de uma estratégia consistente e como a Junte Mais estrutura esse processo todo mês.",
-    "url": "https://juntemais.com.br/blog/o-que-e-gestao-de-redes-sociais.html",
-    "datePublished": "2026-07-22",
-    "author": {
-        "@type": "Organization",
-        "name": "Junte Mais",
-        "url": "https://juntemais.com.br"
+    "@type": "Organization",
+    "name": "Junte Mais",
+    "url": "https://juntemais.com",
+    "logo": "https://juntemais.com/favicon.svg",
+    "description": "Agência de estratégia, criatividade, identidade visual e gestão de redes sociais.",
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-51-99882-1770",
+        "contactType": "customer service",
+        "availableLanguage": ["Portuguese", "English"]
     },
-    "publisher": {
-        "@type": "Organization",
-        "name": "Junte Mais",
-        "url": "https://juntemais.com.br",
-        "logo": "https://juntemais.com.br/favicon.svg"
-    }
+    "sameAs": [
+        "https://www.instagram.com/junte.mais",
+        "https://www.linkedin.com/company/juntemais"
+    ]
 }
 </script>
-</head>
-<body class="font-sans bg-[#050505] min-h-screen text-[#F2F2F2] selection:bg-[#CCFF00] selection:text-black overflow-x-hidden">
 
+</head>
+
+<body class="font-sans bg-[#050505] min-h-screen text-[#F2F2F2] selection:bg-[#CCFF00] selection:text-black overflow-x-hidden">
     <header class="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center" id="main-header">
-        <a href="index.html" class="block h-8 md:h-10">
-    <img src="../logo.svg" alt="Junte Mais" class="h-full w-auto">
+        <a href="/" class="block h-8 md:h-10">
+    <img src="/logo.svg" alt="Junte Mais" class="h-full w-auto">
 </a>
         
         <nav class="hidden md:flex gap-8 items-center">
-            <a href="../index.html" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
+            <a href="/" class="text-sm font-bold uppercase tracking-widest text-[#CCFF00] hover:text-[#CCFF00] transition-colors">Home</a>
             <div class="relative group">
                 <button class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors flex items-center gap-1">
                     Serviços
@@ -138,17 +245,17 @@
                 </button>
                 <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="bg-[#111] border border-[#333] rounded-2xl p-4 min-w-[240px] shadow-xl">
-                        <a href="../gestao-de-redes-sociais.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Gestão de Redes</a>
-                        <a href="../trafego-pago.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Tráfego Pago</a>
-                        <a href="../producao-audiovisual.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Audiovisual</a>
-                        <a href="../landing-page.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Landing Page</a>
-                        <a href="../posicionamento-pontual.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Posicionamento</a>
-                        <a href="../junte-360.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Junte+360</a>
+                        <a href="/gestao-de-redes-sociais/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Gestão de Redes</a>
+                        <a href="/trafego-pago/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Tráfego Pago</a>
+                        <a href="/producao-audiovisual/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Audiovisual</a>
+                        <a href="/landing-page/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Landing Page</a>
+                        <a href="/posicionamento-pontual/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Posicionamento</a>
+                        <a href="/junte-360/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Junte+360</a>
                     </div>
                 </div>
             </div>
-            <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-[#CCFF00] hover:text-[#CCFF00] transition-colors">Blog</a>
-            <a href="../index.html#contact" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
+            <a href="/blog/" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Blog</a>
+            <a href="#contact" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
         </nav>
 
         <button class="md:hidden text-[#F2F2F2] z-50 relative" id="mobile-menu-button">
@@ -157,24 +264,24 @@
     </header>
 
     <div class="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500" id="mobile-menu">
-                <nav class="flex flex-col gap-6 text-center">
-            <a href="../index.html" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
+        <nav class="flex flex-col gap-6 text-center">
+            <a href="/" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
             <div class="mobile-menu-link">
                 <button class="text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors flex items-center gap-2 mx-auto" onclick="event.stopPropagation(); this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180')">
                     Serviços
                     <i data-lucide="chevron-down" class="w-6 h-6 arrow-icon transition-transform duration-200"></i>
                 </button>
                 <div class="hidden flex flex-col gap-3 mt-4">
-                    <a href="../gestao-de-redes-sociais.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Gestão de Redes</a>
-                    <a href="../trafego-pago.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Tráfego Pago</a>
-                    <a href="../producao-audiovisual.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Audiovisual</a>
-                    <a href="../landing-page.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Landing Page</a>
-                    <a href="../posicionamento-pontual.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Posicionamento</a>
-                    <a href="../junte-360.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Junte+360</a>
+                    <a href="/gestao-de-redes-sociais/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Gestão de Redes</a>
+                    <a href="/trafego-pago/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Tráfego Pago</a>
+                    <a href="/producao-audiovisual/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Audiovisual</a>
+                    <a href="/landing-page/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Landing Page</a>
+                    <a href="/posicionamento-pontual/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Posicionamento</a>
+                    <a href="/junte-360/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Junte+360</a>
                 </div>
             </div>
-            <a href="index.html" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#CCFF00] hover:text-[#CCFF00] transition-colors">Blog</a>
-            <a href="../index.html#contact" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
+            <a href="/blog/" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Blog</a>
+            <a href="#contact" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
         </nav>
         <div class="flex gap-6 mt-8">
             <a href="https://www.instagram.com/junte.mais" target="_blank" rel="noopener noreferrer" class="text-[#F2F2F2] hover:text-[#E0C3FC] transition-colors" aria-label="Instagram da Junte Mais">
@@ -190,98 +297,136 @@
     </div>
 
     <div class="grain-overlay fixed inset-0 pointer-events-none z-50 opacity-30 mix-blend-overlay"></div>
+<main class="relative z-10">
 
-    <main class="relative z-10">
-        <article class="pt-36 pb-24 md:pt-40 md:pb-32">
-            <div class="container mx-auto px-4">
+    <style>
+        .timeline-track {
+            background-image: repeating-linear-gradient(90deg, #262626 0 1px, transparent 1px 40px);
+        }
+        .timeline-clip {
+            position: relative;
+        }
+        .timeline-clip::before, .timeline-clip::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 8px;
+            background-image: repeating-linear-gradient(180deg, #050505 0 4px, transparent 4px 10px);
+            background-color: #0a0a0a;
+        }
+        .timeline-clip::before { left: 0; }
+        .timeline-clip::after { right: 0; }
+    </style>
 
-                <!-- Back to blog -->
-                <div class="max-w-3xl mx-auto mb-8 scroll-reveal">
-                    <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-[#CCFF00] transition-colors">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                        Voltar para o blog
+    <!-- HERO -->
+    <section class="relative overflow-hidden pt-40 pb-20 md:pt-48 md:pb-24 text-center" style="background-color:#0a0a0a;">
+        <div class="grain-overlay absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay z-0"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-bricolage tracking-tighter uppercase text-[#F2F2F2]">
+                Produção Audiovisual &amp;
+                <span class="relative inline-block">
+                    Fotografia
+                    <img src="/assets/images/producao-audiovisual.webp" alt="" class="absolute -bottom-2 md:-bottom-4 -right-2 md:-right-4 w-14 h-14 md:w-20 md:h-20 object-contain pointer-events-none" loading="eager">
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl mt-6 max-w-2xl mx-auto font-medium text-[#F2F2F2]/80">Conteúdo audiovisual e fotografia de qualidade para fortalecer sua presença digital.</p>
+            <div class="mt-10">
+                <a href="https://wa.me/+5551998821770" class="group relative inline-flex px-8 py-4 rounded-full border-2 border-[#F2F2F2] overflow-hidden transition-all duration-300 hover:scale-105 items-center gap-2">
+                    <div class="absolute inset-0 w-full h-full bg-[#CCFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    <span class="relative font-bold text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300">Quero este serviço</span>
+                    <i data-lucide="arrow-right" class="relative w-5 h-5 text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITOR TIMELINE: formats as clips on a track -->
+    <section class="bg-[#050505] text-[#F2F2F2] py-20 md:py-28 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-sm md:text-base text-[#CCFF00] font-bold uppercase tracking-widest mb-3">Formatos</h2>
+                <p class="text-3xl md:text-4xl font-bold font-bricolage tracking-tight mb-14 max-w-xl">Da captação à entrega, tudo no mesmo timeline.</p>
+
+                <div class="rounded-2xl border border-[#262626] bg-[#0a0a0a] p-4 md:p-6 scroll-reveal">
+                    <div class="flex items-center gap-2 text-xs text-gray-500 font-mono mb-4 px-1">
+                        <i data-lucide="play" class="w-3.5 h-3.5 text-[#CCFF00]"></i>
+                        <span>00:00:00</span>
+                        <div class="flex-1 h-px bg-[#262626] mx-2"></div>
+                        <span>00:04:00</span>
+                    </div>
+
+                    <div class="timeline-track rounded-lg p-3 space-y-3">
+                        <div class="timeline-clip bg-[#111] border border-[#333] rounded-md px-6 py-4 flex items-center gap-4">
+                            <span class="font-mono text-xs text-gray-500 flex-shrink-0">00:00:01</span>
+                            <i data-lucide="building-2" class="w-5 h-5 text-[#CCFF00] flex-shrink-0"></i>
+                            <p class="font-bold">Vídeos institucionais</p>
+                        </div>
+
+                        <div class="timeline-clip rounded-md px-6 py-4 flex items-center gap-4" style="background-color:#CCFF00;">
+                            <span class="font-mono text-xs text-[#050505]/60 flex-shrink-0">00:01:12</span>
+                            <i data-lucide="clapperboard" class="w-5 h-5 text-[#050505] flex-shrink-0"></i>
+                            <div>
+                                <p class="font-bold text-[#050505]">Conteúdo criativo</p>
+                                <p class="text-xs text-[#050505]/70">Reels, campanhas e bastidores</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-clip bg-[#111] border border-[#333] rounded-md px-6 py-4 flex items-center gap-4">
+                            <span class="font-mono text-xs text-gray-500 flex-shrink-0">00:02:30</span>
+                            <i data-lucide="camera" class="w-5 h-5 text-[#CCFF00] flex-shrink-0"></i>
+                            <div>
+                                <p class="font-bold">Fotografia profissional</p>
+                                <p class="text-xs text-gray-400">Lifestyle, produto e real time</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-clip rounded-md px-6 py-4 flex items-center gap-4" style="background-color:#E0C3FC;">
+                            <span class="font-mono text-xs text-[#050505]/60 flex-shrink-0">00:03:45</span>
+                            <i data-lucide="aperture" class="w-5 h-5 text-[#050505] flex-shrink-0"></i>
+                            <p class="font-bold text-[#050505]">Ensaios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="bg-[#0a0a0a] text-[#F2F2F2] py-24 md:py-32 border-t border-[#1a1a1a]">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold font-bricolage tracking-tighter mb-16 text-center">Ensaios &amp; projetos</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-[#111] border border-[#333] rounded-3xl p-8 scroll-reveal">
+                        <i data-lucide="timer" class="w-6 h-6 text-[#CCFF00] mb-4"></i>
+                        <p class="text-4xl md:text-5xl font-bold font-bricolage">Sob consulta</p>
+                        <p class="text-gray-400 mt-2">1 hora de ensaio</p>
+                    </div>
+                    <div class="bg-[#111] border border-[#333] rounded-3xl p-8 scroll-reveal delay-100">
+                        <i data-lucide="timer" class="w-6 h-6 text-[#CCFF00] mb-4"></i>
+                        <p class="text-4xl md:text-5xl font-bold font-bricolage">Sob consulta</p>
+                        <p class="text-gray-400 mt-2">3 horas de ensaio</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#111] border border-[#333] rounded-3xl p-8 mt-6 text-center scroll-reveal delay-200">
+                    <p class="text-xl font-bold">Projetos sob medida</p>
+                    <p class="text-gray-400 mt-1">Valores variam conforme a demanda</p>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <a href="https://wa.me/+5551998821770" class="group relative inline-flex px-8 py-4 rounded-full border-2 border-[#CCFF00] overflow-hidden transition-all duration-300 hover:scale-105 items-center gap-2">
+                        <div class="absolute inset-0 w-full h-full bg-[#CCFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                        <span class="relative font-bold text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300">Quero este serviço</span>
+                        <i data-lucide="arrow-right" class="relative w-5 h-5 text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300"></i>
                     </a>
                 </div>
-
-                <!-- Post header -->
-                <div class="max-w-3xl mx-auto scroll-reveal delay-100">
-                    <span class="text-xs text-[#CCFF00] font-bold uppercase tracking-widest border border-[#CCFF00] inline-block px-3 py-1 rounded-full mb-6">Guia</span>
-                    <h1 class="text-4xl md:text-6xl font-bold font-bricolage tracking-tighter leading-[1.05] mb-6">
-                        O que é gestão de redes sociais e por que sua marca precisa?
-                    </h1>
-                    <div class="flex items-center gap-4 text-sm text-gray-400">
-                        <span>Junte Mais</span>
-                        <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-                        <span>12 de julho de 2026</span>
-                        <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-                        <span>5 min de leitura</span>
-                    </div>
-                </div>
-
-                <!-- Cover image -->
-                <div class="max-w-4xl mx-auto mt-10 mb-14 scroll-reveal delay-200">
-                    <div class="rounded-3xl overflow-hidden border border-[#262626] aspect-[16/9]">
-                        <img src="https://i.ibb.co/zVqmH1x0/mulheres-junte-mais.webp?q=80&w=1200&auto=format&fit=crop" alt="Time da Junte Mais planejando conteúdo para redes sociais" class="w-full h-full object-cover grayscale">
-                    </div>
-                </div>
-
-                <!-- Body -->
-                <div class="max-w-3xl mx-auto">
-                    <div class="prose-custom text-lg leading-relaxed text-[#F2F2F2]/90 space-y-6 scroll-reveal">
-
-                        <p>Toda marca que posta sem um propósito claro cedo ou tarde sente o mesmo problema: engajamento baixo, feed sem identidade e nenhuma ideia clara do que aquilo está trazendo de retorno. Gestão de redes sociais existe justamente para resolver isso — e vai muito além de "aparecer todo dia".</p>
-
-                        <h2 class="text-2xl md:text-3xl font-bold font-bricolage tracking-tight text-[#F2F2F2] pt-6">O que é, na prática</h2>
-                        <p>Gestão de redes sociais é o processo de planejar, produzir, publicar e medir o conteúdo de uma marca de forma contínua. Isso inclui definir a linha editorial, montar o calendário do mês, criar as peças (carrossel, reels, posts estáticos), publicar no ritmo certo e, no fim, olhar os números pra entender o que funcionou.</p>
-                        <p>É a diferença entre um perfil que só existe e um perfil que constrói alguma coisa — autoridade, comunidade ou vendas, dependendo do objetivo da marca.</p>
-
-                        <div class="border-l-2 border-[#CCFF00] pl-6 py-2 my-8">
-                            <p class="text-xl md:text-2xl font-medium font-bricolage text-[#F2F2F2]">"Postar é a parte visível. Estratégia é o que decide se aquilo vale a pena."</p>
-                        </div>
-
-                        <h2 class="text-2xl md:text-3xl font-bold font-bricolage tracking-tight text-[#F2F2F2] pt-6">Por que sua marca precisa disso</h2>
-                        <p>Redes sociais hoje são, pra maioria das marcas, o primeiro contato com um cliente em potencial. Antes de comprar, a pessoa entra no perfil pra "sentir" se aquela marca é confiável. Um feed desorganizado, sem consistência visual e sem conteúdo relevante, passa insegurança — mesmo que o produto seja bom.</p>
-                        <p>Uma gestão estratégica resolve três coisas ao mesmo tempo:</p>
-                        <ul class="list-none space-y-3 my-6">
-                            <li class="flex items-start gap-3">
-                                <i data-lucide="check" class="w-5 h-5 text-[#CCFF00] mt-1 flex-shrink-0"></i>
-                                <span><strong class="text-[#F2F2F2]">Consistência:</strong> a marca aparece com a mesma cara, o mesmo tom de voz, todo mês.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i data-lucide="check" class="w-5 h-5 text-[#CCFF00] mt-1 flex-shrink-0"></i>
-                                <span><strong class="text-[#F2F2F2]">Direção:</strong> cada post tem um motivo de existir, ligado a um objetivo maior.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i data-lucide="check" class="w-5 h-5 text-[#CCFF00] mt-1 flex-shrink-0"></i>
-                                <span><strong class="text-[#F2F2F2]">Mensuração:</strong> dá pra saber o que gerou resultado e o que não gerou.</span>
-                            </li>
-                        </ul>
-
-                        <h2 class="text-2xl md:text-3xl font-bold font-bricolage tracking-tight text-[#F2F2F2] pt-6">Como a Junte Mais estrutura isso</h2>
-                        <p>Na prática, o nosso fluxo mensal segue quatro etapas: planejamento editorial, produção de conteúdo, gestão da publicação e, por fim, performance — com relatório e reunião de alinhamento. Nada fica solto, e a marca sempre sabe o que está por vir e o que já rendeu resultado.</p>
-                        <p>Se o seu feed ainda parece um mural sem fio condutor, talvez seja hora de tratar as redes sociais como o que elas são: um canal de negócio, não só um espaço criativo.</p>
-
-                    </div>
-
-                    <!-- CTA -->
-                    <div class="mt-16 p-8 md:p-10 rounded-3xl bg-[#111] border border-[#333] flex flex-col md:flex-row items-center justify-between gap-6 scroll-reveal">
-                        <div>
-                            <p class="text-xl md:text-2xl font-bold font-bricolage tracking-tight mb-1">Quer sua marca com uma gestão assim?</p>
-                            <p class="text-gray-400 text-sm">Planejamento, produção e performance, todo mês.</p>
-                        </div>
-                        <a href="https://wa.me/+5551998821770" class="group relative inline-flex px-6 py-3 rounded-full border-2 border-[#CCFF00] overflow-hidden transition-all duration-300 hover:scale-105 items-center gap-2 flex-shrink-0" target="_blank" rel="noopener noreferrer">
-                            <div class="absolute inset-0 w-full h-full bg-[#CCFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                            <span class="relative font-bold text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300 whitespace-nowrap">Falar com a Junte Mais</span>
-                            <i data-lucide="arrow-right" class="relative w-5 h-5 text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300"></i>
-                        </a>
-                    </div>
-                </div>
-
             </div>
-        </article>
+        </div>
+    </section>
 
-    </main>
-
+</main>
 <footer class="bg-[#CCFF00] text-[#050505] min-h-screen flex flex-col justify-between p-8 md:p-12 relative overflow-hidden" id="contact">
     <div class="flex-grow flex flex-col justify-center items-center text-center">
         <div class="w-full max-w-4xl mx-auto mb-8 scroll-reveal">
@@ -324,7 +469,8 @@
         </div>
     </div>
 </footer>
+    </main>
 
-    <script src="../script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

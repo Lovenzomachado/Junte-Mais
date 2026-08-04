@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-<link rel="shortcut icon" href="./favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Junte+" />
-<link rel="manifest" href="./site.webmanifest" />
+<link rel="manifest" href="/site.webmanifest" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tráfego Pago para Empresas | Junte Mais</title>
-    <meta name="description" content="Campanhas de tráfego pago no Google Ads e Meta Business com otimização constante. Só fechamos tráfego para clientes que já fazem gestão conosco.">
+    <title>Tráfego pago ou orgânico: qual escolher? | Blog Junte Mais</title>
+    <meta name="description" content="Tráfego pago ou orgânico: entenda as diferenças, quando usar cada canal e como combinar os dois para gerar resultados reais na sua marca.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://juntemais.com.br/trafego-pago.html">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Tráfego Pago para Empresas | Junte Mais">
-    <meta property="og:description" content="Campanhas de tráfego pago no Google Ads e Meta Business com otimização constante. Só fechamos tráfego para clientes que já fazem gestão conosco.">
-    <meta property="og:url" content="https://juntemais.com.br/trafego-pago.html">
-    <meta property="og:image" content="https://juntemais.com.br/og-image.jpg">
+    <link rel="canonical" href="https://juntemais.com/blog/trafego-pago-ou-organico/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Tráfego pago ou orgânico: qual escolher?">
+    <meta property="og:description" content="Tráfego pago ou orgânico: entenda as diferenças, quando usar cada canal e como combinar os dois para gerar resultados reais na sua marca.">
+    <meta property="og:url" content="https://juntemais.com/blog/trafego-pago-ou-organico/">
+    <meta property="og:image" content="https://juntemais.com/og-image.jpg">
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tráfego Pago para Empresas | Junte Mais">
-    <meta name="twitter:description" content="Campanhas de tráfego pago no Google Ads e Meta Business com otimização constante. Só fechamos tráfego para clientes que já fazem gestão conosco.">
-    <meta name="twitter:image" content="https://juntemais.com.br/og-image.jpg">
+    <meta name="twitter:title" content="Tráfego pago ou orgânico: qual escolher?">
+    <meta name="twitter:description" content="Tráfego pago ou orgânico: entenda as diferenças, quando usar cada canal e como combinar os dois para gerar resultados reais.">
+    <meta name="twitter:image" content="https://juntemais.com/og-image.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,46 +75,6 @@
         .animate-spin-slow {
             animation: spin-linear 10s linear infinite;
         }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-content {
-            animation: marquee 20s linear infinite;
-        }
-        .text-stroke {
-            -webkit-text-stroke: 1px #F2F2F2;
-        }
-        .reveal-left {
-            transform: translateX(-100px);
-            opacity: 0;
-            transition: all 0.8s ease-out;
-        }
-        .reveal-left.visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        .reveal-right {
-            transform: translateX(100px);
-            opacity: 0;
-            transition: all 0.8s ease-out;
-        }
-        .reveal-right.visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        .reveal-scale {
-            transform: scale(0);
-            opacity: 0;
-            transition: all 1s ease-out 0.2s;
-        }
-        .reveal-scale.visible {
-            transform: scale(1);
-            opacity: 1;
-        }
-        .hero-text {
-            transition: color 0.3s ease;
-        }
         .scroll-reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -126,13 +86,6 @@
         }
         .delay-100 { transition-delay: 0.1s; }
         .delay-200 { transition-delay: 0.2s; }
-        .animate-expand {
-            width: 0%;
-            transition: width 0.8s ease-out;
-        }
-        .animate-expand.visible {
-            width: 100%;
-        }
         .mobile-menu-link {
             opacity: 0;
             transform: translateY(20px);
@@ -146,99 +99,38 @@
         #mobile-menu.active .mobile-menu-link:nth-child(2) { transition-delay: 0.2s; }
         #mobile-menu.active .mobile-menu-link:nth-child(3) { transition-delay: 0.3s; }
         #mobile-menu.active .mobile-menu-link:nth-child(4) { transition-delay: 0.4s; }
-        .cursor-none-area {
-            cursor: none;
-        }
-        @media (max-width: 768px) {
-            .cursor-none-area {
-                cursor: auto;
-            }
-            #custom-cursor {
-                display: none !important;
-            }
-        }
-        
-        /* Testimonials carousel - mobile scroll */
-        .testimonials-scroll-container {
-            display: flex;
-            gap: 1.5rem;
-            padding: 0 1.5rem;
-            list-style: none;
-            overflow-x: scroll;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-        .testimonials-scroll-container::-webkit-scrollbar {
-            display: none;
-        }
-        .testimonial-card {
-            flex-shrink: 0;
-            scroll-snap-align: start;
-        }
-        
-        /* Mobile: cards ocupam 90% da largura */
-        @media (max-width: 767px) {
-            .testimonial-card {
-                width: 90%;
-            }
-        }
-        
-        /* Desktop: grid layout normal */
-        @media (min-width: 768px) {
-            .testimonials-scroll-container {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                overflow-x: visible;
-                scroll-snap-type: none;
-                padding: 0;
-            }
-            .testimonial-card {
-                width: auto;
-            }
-        }
     </style>
-      <!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vbvj6aiuye");
-</script>
-
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Junte Mais",
-    "url": "https://juntemais.com.br",
-    "logo": "https://juntemais.com.br/favicon.svg",
-    "description": "Agência de estratégia, criatividade, identidade visual e gestão de redes sociais.",
-    "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+55-51-99882-1770",
-        "contactType": "customer service",
-        "availableLanguage": ["Portuguese", "English"]
+    "@type": "BlogPosting",
+    "headline": "Tráfego pago ou orgânico: qual escolher?",
+    "description": "Tráfego pago ou orgânico: entenda as diferenças, quando usar cada canal e como combinar os dois para gerar resultados reais na sua marca.",
+    "url": "https://juntemais.com/blog/trafego-pago-ou-organico/",
+    "datePublished": "2026-07-20",
+    "author": {
+        "@type": "Organization",
+        "name": "Junte Mais",
+        "url": "https://juntemais.com"
     },
-    "sameAs": [
-        "https://www.instagram.com/junte.mais",
-        "https://www.linkedin.com/company/juntemais"
-    ]
+    "publisher": {
+        "@type": "Organization",
+        "name": "Junte Mais",
+        "url": "https://juntemais.com",
+        "logo": "https://juntemais.com/favicon.svg"
+    }
 }
 </script>
-
 </head>
-
 <body class="font-sans bg-[#050505] min-h-screen text-[#F2F2F2] selection:bg-[#CCFF00] selection:text-black overflow-x-hidden">
 
     <header class="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center" id="main-header">
-        <a href="index.html" class="block h-8 md:h-10">
-    <img src="logo.svg" alt="Junte Mais" class="h-full w-auto">
+        <a href="/blog/" class="block h-8 md:h-10">
+    <img src="/logo.svg" alt="Junte Mais" class="h-full w-auto">
 </a>
         
         <nav class="hidden md:flex gap-8 items-center">
-            <a href="index.html" class="text-sm font-bold uppercase tracking-widest text-[#CCFF00] hover:text-[#CCFF00] transition-colors">Home</a>
+            <a href="/" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
             <div class="relative group">
                 <button class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors flex items-center gap-1">
                     Serviços
@@ -246,17 +138,17 @@
                 </button>
                 <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="bg-[#111] border border-[#333] rounded-2xl p-4 min-w-[240px] shadow-xl">
-                        <a href="gestao-de-redes-sociais.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Gestão de Redes</a>
-                        <a href="trafego-pago.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Tráfego Pago</a>
-                        <a href="producao-audiovisual.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Audiovisual</a>
-                        <a href="landing-page.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Landing Page</a>
-                        <a href="posicionamento-pontual.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Posicionamento</a>
-                        <a href="junte-360.html" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Junte+360</a>
+                        <a href="/gestao-de-redes-sociais/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Gestão de Redes</a>
+                        <a href="/trafego-pago/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Tráfego Pago</a>
+                        <a href="/producao-audiovisual/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Audiovisual</a>
+                        <a href="/landing-page/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Landing Page</a>
+                        <a href="/posicionamento-pontual/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Posicionamento</a>
+                        <a href="/junte-360/" class="block px-4 py-2 text-sm text-[#F2F2F2] hover:text-[#CCFF00] hover:bg-[#222] rounded-lg transition-colors">Junte+360</a>
                     </div>
                 </div>
             </div>
-            <a href="blog/index.html" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Blog</a>
-            <a href="#contact" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
+            <a href="/blog/" class="text-sm font-bold uppercase tracking-widest text-[#CCFF00] hover:text-[#CCFF00] transition-colors">Blog</a>
+            <a href="/#contact" class="text-sm font-bold uppercase tracking-widest text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
         </nav>
 
         <button class="md:hidden text-[#F2F2F2] z-50 relative" id="mobile-menu-button">
@@ -265,24 +157,24 @@
     </header>
 
     <div class="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500" id="mobile-menu">
-        <nav class="flex flex-col gap-6 text-center">
-            <a href="index.html" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
+                <nav class="flex flex-col gap-6 text-center">
+            <a href="/" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Home</a>
             <div class="mobile-menu-link">
                 <button class="text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors flex items-center gap-2 mx-auto" onclick="event.stopPropagation(); this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180')">
                     Serviços
                     <i data-lucide="chevron-down" class="w-6 h-6 arrow-icon transition-transform duration-200"></i>
                 </button>
                 <div class="hidden flex flex-col gap-3 mt-4">
-                    <a href="gestao-de-redes-sociais.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Gestão de Redes</a>
-                    <a href="trafego-pago.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Tráfego Pago</a>
-                    <a href="producao-audiovisual.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Audiovisual</a>
-                    <a href="landing-page.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Landing Page</a>
-                    <a href="posicionamento-pontual.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Posicionamento</a>
-                    <a href="junte-360.html" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Junte+360</a>
+                    <a href="/gestao-de-redes-sociais/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Gestão de Redes</a>
+                    <a href="/trafego-pago/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Tráfego Pago</a>
+                    <a href="/producao-audiovisual/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Audiovisual</a>
+                    <a href="/landing-page/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Landing Page</a>
+                    <a href="/posicionamento-pontual/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Posicionamento</a>
+                    <a href="/junte-360/" class="text-xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Junte+360</a>
                 </div>
             </div>
-            <a href="blog/index.html" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Blog</a>
-            <a href="#contact" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
+            <a href="/blog/" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#CCFF00] hover:text-[#CCFF00] transition-colors">Blog</a>
+            <a href="/#contact" class="mobile-menu-link text-4xl font-bold uppercase tracking-wider text-[#F2F2F2] hover:text-[#CCFF00] transition-colors">Contato</a>
         </nav>
         <div class="flex gap-6 mt-8">
             <a href="https://www.instagram.com/junte.mais" target="_blank" rel="noopener noreferrer" class="text-[#F2F2F2] hover:text-[#E0C3FC] transition-colors" aria-label="Instagram da Junte Mais">
@@ -300,71 +192,82 @@
     <div class="grain-overlay fixed inset-0 pointer-events-none z-50 opacity-30 mix-blend-overlay"></div>
 
     <main class="relative z-10">
+        <article class="pt-36 pb-24 md:pt-40 md:pb-32">
+            <div class="container mx-auto px-4">
 
-                <section class="min-h-[60vh] md:min-h-[70vh] relative flex flex-col items-center justify-center py-32 overflow-hidden" style="background-color: #0a0a0a;">
-                    <div class="grain-overlay absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay z-0"></div>
-                                <div class="container mx-auto px-4 relative z-10 text-center">
-                <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold font-bricolage tracking-tighter uppercase" style="color: #F2F2F2;">Tráfego Pago</h1>
-                <p class="text-xl md:text-2xl mt-6 max-w-2xl mx-auto font-medium" style="color: #F2F2F2; opacity: 0.9;">Impulsione seu negócio com anúncios estratégicos.</p>
-                <div class="mt-10">
-                    <a href="https://wa.me/+5551998821770" class="group relative inline-flex px-8 py-4 rounded-full border-2 overflow-hidden transition-all duration-300 hover:scale-105 items-center gap-2" style="border-color: #F2F2F2; color: #F2F2F2;">
-                        <div class="absolute inset-0 w-full h-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" style="background-color: #CCFF00;"></div>
-                        <span class="relative font-bold group-hover:text-[#050505] transition-colors duration-300">Quero este serviço</span>
-                        <i data-lucide="arrow-right" class="relative w-5 h-5 group-hover:text-[#050505] transition-colors duration-300"></i>
+                <!-- Back to blog -->
+                <div class="max-w-3xl mx-auto mb-8 scroll-reveal">
+                    <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-[#CCFF00] transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        Voltar para o blog
                     </a>
                 </div>
-            </div>
-        </section>
 
-        <section class="bg-[#050505] text-[#F2F2F2] py-24 md:py-32">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl md:text-5xl font-bold font-bricolage tracking-tighter mb-12">O que está incluído</h2>
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4 bg-opacity-5 bg-white p-6 rounded-2xl border border-gray-800">
-                            <div class="w-6 h-6 mt-1 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CCFF00;">
-                                <i data-lucide="check" class="w-4 h-4 text-[#050505]"></i>
-                            </div>
-                            <p class="text-lg md:text-xl">Gerenciamento de campanhas no Google Ads e Meta Business</p>
+                <!-- Post header -->
+                <div class="max-w-3xl mx-auto scroll-reveal delay-100">
+                    <span class="text-xs text-[#CCFF00] font-bold uppercase tracking-widest border border-[#CCFF00] inline-block px-3 py-1 rounded-full mb-6">Tráfego</span>
+                    <h1 class="text-4xl md:text-6xl font-bold font-bricolage tracking-tighter leading-[1.05] mb-6">
+                        Tráfego pago ou orgânico: qual escolher para começar?
+                    </h1>
+                    <div class="flex items-center gap-4 text-sm text-gray-400">
+                        <span>Junte Mais</span>
+                        <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+                        <span>20 de julho de 2026</span>
+                        <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+                        <span>5 min de leitura</span>
+                    </div>
+                </div>
+
+                <!-- Cover image -->
+                <div class="max-w-4xl mx-auto mt-10 mb-14 scroll-reveal delay-200">
+                    <div class="rounded-3xl overflow-hidden border border-[#262626] aspect-[16/9] flex items-center justify-center bg-[#111]">
+                        <i data-lucide="trending-up" class="w-24 h-24 text-[#CCFF00] opacity-40"></i>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="max-w-3xl mx-auto">
+                    <div class="prose-custom text-lg leading-relaxed text-[#F2F2F2]/90 space-y-6 scroll-reveal">
+
+                        <p>O debate entre tráfego pago e orgânico é um dos mais antigos do marketing digital. E a verdade é que não existe resposta universal — depende do seu objetivo, do seu orçamento e do prazo que você tem pra colher resultados.</p>
+
+                        <h2 class="text-2xl md:text-3xl font-bold font-bricolage tracking-tight text-[#F2F2F2] pt-6">Tráfego pago: rapidez e controle</h2>
+                        <p>Com tráfego pago, você tem resultados imediatos. Segmentação precisa de público, escalabilidade conforme o orçamento e a possibilidade de testar e validar hipóteses rapidamente. É ideal quando você precisa de resultados rápidos e tem budget pra investir.</p>
+                        <p>Mas atenção: quando você para de pagar, o tráfego para. É um modelo que exige investimento contínuo pra manter os resultados.</p>
+
+                        <div class="border-l-2 border-[#CCFF00] pl-6 py-2 my-8">
+                            <p class="text-xl md:text-2xl font-medium font-bricolage text-[#F2F2F2]">"Tráfego pago é aluguel. Tráfego orgânico é construção. Os dois têm valor, mas o jogo é diferente."</p>
                         </div>
-                        <div class="flex items-start gap-4 bg-opacity-5 bg-white p-6 rounded-2xl border border-gray-800">
-                            <div class="w-6 h-6 mt-1 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CCFF00;">
-                                <i data-lucide="check" class="w-4 h-4 text-[#050505]"></i>
-                            </div>
-                            <p class="text-lg md:text-xl">Otimizações constantes para maximizar o ROI</p>
-                        </div>
-                        <div class="flex items-start gap-4 bg-opacity-5 bg-white p-6 rounded-2xl border border-gray-800">
-                            <div class="w-6 h-6 mt-1 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CCFF00;">
-                                <i data-lucide="check" class="w-4 h-4 text-[#050505]"></i>
-                            </div>
-                            <p class="text-lg md:text-xl">Monitoramento de métricas e ajustes de estratégia</p>
-                        </div>
-                        <div class="flex items-start gap-4 bg-opacity-5 bg-white p-6 rounded-2xl border border-gray-800">
-                            <div class="w-6 h-6 mt-1 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CCFF00;">
-                                <i data-lucide="check" class="w-4 h-4 text-[#050505]"></i>
-                            </div>
-                            <p class="text-lg md:text-xl">Relatórios mensais de performance</p>
-                        </div>
-                        <div class="flex items-start gap-4 bg-opacity-5 bg-white p-6 rounded-2xl border border-gray-800">
-                            <div class="w-6 h-6 mt-1 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CCFF00;">
-                                <i data-lucide="check" class="w-4 h-4 text-[#050505]"></i>
-                            </div>
-                            <p class="text-lg md:text-xl">Disponível apenas para clientes que já fazem gestão de redes conosco</p>
-                        </div>
+
+                        <h2 class="text-2xl md:text-3xl font-bold font-bricolage tracking-tight text-[#F2F2F2] pt-6">Tráfego orgânico: autoridade a longo prazo</h2>
+                        <p>O tráfego orgânico constrói autoridade sustentável. O custo diminui ao longo do tempo e gera confiança — as pessoas confiam mais em quem aparece naturalmente nos resultados de busca e feeds.</p>
+                        <p>Porém, leva tempo pra mostrar resultados e exige produção contínua de conteúdo de qualidade. Não é da noite pro dia, mas quando funciona, é imbatível.</p>
+
+                        <h2 class="text-2xl md:text-3xl font-bold font-bricolage tracking-tight text-[#F2F2F2] pt-6">Qual escolher</h2>
+                        <p>Se você precisa de resultados imediatos e tem orçamento, comece com tráfego pago. Se quer crescimento sustentável, invista em orgânico. O ideal é combinar os dois — pago pra ter resultados rápidos, orgânico pra construir autoridade a longo prazo.</p>
+                        <p>A estratégia certa não é escolher um ou outro. É saber quando usar cada um e como integrá-los numa visão de negócio coerente.</p>
+
                     </div>
 
-                    <div class="mt-16 text-center">
-                        <a href="https://wa.me/+5551998821770" class="group relative inline-flex px-8 py-4 rounded-full border-2 border-[#CCFF00] overflow-hidden transition-all duration-300 hover:scale-105 items-center gap-2">
+                    <!-- CTA -->
+                    <div class="mt-16 p-8 md:p-10 rounded-3xl bg-[#111] border border-[#333] flex flex-col md:flex-row items-center justify-between gap-6 scroll-reveal">
+                        <div>
+                            <p class="text-xl md:text-2xl font-bold font-bricolage tracking-tight mb-1">Quer uma estratégia de tráfego que faça sentido?</p>
+                            <p class="text-gray-400 text-sm">A gente monta o plano ideal pra sua marca.</p>
+                        </div>
+                        <a href="https://wa.me/+5551998821770" class="group relative inline-flex px-6 py-3 rounded-full border-2 border-[#CCFF00] overflow-hidden transition-all duration-300 hover:scale-105 items-center gap-2 flex-shrink-0" target="_blank" rel="noopener noreferrer">
                             <div class="absolute inset-0 w-full h-full bg-[#CCFF00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                            <span class="relative font-bold text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300">Vamos construir autoridade</span>
+                            <span class="relative font-bold text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300 whitespace-nowrap">Falar com a Junte Mais</span>
                             <i data-lucide="arrow-right" class="relative w-5 h-5 text-[#F2F2F2] group-hover:text-[#050505] transition-colors duration-300"></i>
                         </a>
                     </div>
                 </div>
+
             </div>
-        </section>
+        </article>
 
     </main>
+
 <footer class="bg-[#CCFF00] text-[#050505] min-h-screen flex flex-col justify-between p-8 md:p-12 relative overflow-hidden" id="contact">
     <div class="flex-grow flex flex-col justify-center items-center text-center">
         <div class="w-full max-w-4xl mx-auto mb-8 scroll-reveal">
@@ -379,7 +282,7 @@
         </g>
     </svg>
 </div>
-        <p class="text-xl md:text-3xl font-medium max-w-2xl mb-12 scroll-reveal delay-100">Cada marca é um projeto vivo.Vamos dar vida à sua?</p>
+        <p class="text-xl md:text-3xl font-medium max-w-2xl mb-12 scroll-reveal delay-100">Cada marca é um projeto vivo. Vamos dar vida à sua?</p>
         <div class="scroll-reveal delay-200 flex flex-wrap gap-4 justify-center">
             <a href="https://wa.me/+5551998821770" target="_blank" rel="noopener noreferrer" class="group relative px-6 md:px-8 py-3 md:py-4 rounded-full border-2 border-[#050505] overflow-hidden transition-all duration-300 hover:border-[#050505] flex items-center gap-2">
                 <div class="absolute inset-0 w-full h-full bg-[#050505] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -407,8 +310,10 @@
         </div>
     </div>
 </footer>
-    </main>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
+
+
+
